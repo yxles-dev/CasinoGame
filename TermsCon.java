@@ -16,8 +16,8 @@ import javax.swing.*;
 import java.awt.Font;
 import java.awt.event.*;
 
-public class CasinoGame {
-    public static void main(String[] args) throws FileNotFoundException {
+public class TermsCon {
+    public void Terms() throws FileNotFoundException {
         System.out.println("Hello World!");
         Login login = new Login();
 
