@@ -12,9 +12,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-
 import javax.swing.*;
-
 import java.awt.Font;
 import java.awt.event.*;
 
