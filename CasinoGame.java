@@ -59,17 +59,20 @@ public class CasinoGame {
         
 
         // Terms and Conditions Screen
-        JButton accept = new JButton("Accept");
-        JButton deny = new JButton("Deny");
+        JButton accept = new JButton(new ImageIcon("src/icons/Accept.png"));
+        JButton deny = new JButton(new ImageIcon("src/icons/Deny.png"));
         
 
         scroll.setBounds(60, 48, 379, 168);
+        TaC.setEditable(false);
         TaC.setLineWrap(true);
         TaC.setWrapStyleWord(true);
 
         
-        accept.setBounds(24,247,95,30);
-        deny.setBounds(380,247,95,30);
+        accept.setBounds(24,247,84,36);
+        accept.setBorderPainted(false);
+        deny.setBounds(380,247,84,36);
+        deny.setBorderPainted(false);
         frame1.setSize(500,300);
         frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame1.setLayout(null);
