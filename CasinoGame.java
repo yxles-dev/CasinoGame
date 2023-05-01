@@ -24,6 +24,9 @@ public class CasinoGame {
         JLabel text = new JLabel("Terms and Conditions");
         text.setFont(new Font(null, Font.PLAIN, 20));
 
+        JCheckBox checkBox = new JCheckBox("I agree to the terms and policy of the game");
+        checkBox.setBounds(135, 256, 229, 12);
+
 
         FileReader reader = new FileReader("src/terms.txt");
         BufferedReader br = new BufferedReader(reader);
@@ -75,6 +78,7 @@ public class CasinoGame {
         deny.setBorderPainted(false);
         frame1.setSize(500,300);
         frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame1.setResizable(false);
         frame1.setLayout(null);
         frame1.setLocationRelativeTo(null);
         frame1.setVisible(true);
@@ -84,6 +88,7 @@ public class CasinoGame {
         frame1.add(panel);
         frame1.add(deny);
         frame1.add(text);
+        frame1.add(checkBox);
 
         deny.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){  
@@ -93,8 +98,11 @@ public class CasinoGame {
         
         accept.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                login.LoginScreen();
-                frame1.dispose();
+                System.out.println(checkBox.isSelected());
+                if (checkBox.isSelected() == true) {
+                    login.LoginScreen();
+                    frame1.dispose();
+                }
             }
         });
     }
