@@ -16,13 +16,16 @@ import javax.swing.*;
 import java.awt.Font;
 import java.awt.event.*;
 
-public class CasinoGame {
-    public static void main(String[] args) throws FileNotFoundException {
+public class TermsCon {
+    public void Terms() throws FileNotFoundException {
         System.out.println("Hello World!");
         Login login = new Login();
 
         JLabel text = new JLabel("Terms and Conditions");
         text.setFont(new Font(null, Font.PLAIN, 20));
+
+        JCheckBox checkBox = new JCheckBox("I agree to the terms and policy of the game");
+        checkBox.setBounds(135, 256, 229, 12);
 
 
         FileReader reader = new FileReader("src/terms.txt");
@@ -59,19 +62,23 @@ public class CasinoGame {
         
 
         // Terms and Conditions Screen
-        JButton accept = new JButton("Accept");
-        JButton deny = new JButton("Deny");
+        JButton accept = new JButton(new ImageIcon("src/icons/Accept.png"));
+        JButton deny = new JButton(new ImageIcon("src/icons/Deny.png"));
         
 
         scroll.setBounds(60, 48, 379, 168);
+        TaC.setEditable(false);
         TaC.setLineWrap(true);
         TaC.setWrapStyleWord(true);
 
         
-        accept.setBounds(24,247,95,30);
-        deny.setBounds(380,247,95,30);
+        accept.setBounds(24,247,84,36);
+        accept.setBorderPainted(false);
+        deny.setBounds(380,247,84,36);
+        deny.setBorderPainted(false);
         frame1.setSize(500,300);
         frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame1.setResizable(false);
         frame1.setLayout(null);
         frame1.setLocationRelativeTo(null);
         frame1.setVisible(true);
@@ -81,6 +88,7 @@ public class CasinoGame {
         frame1.add(panel);
         frame1.add(deny);
         frame1.add(text);
+        frame1.add(checkBox);
 
         deny.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){  
@@ -90,8 +98,11 @@ public class CasinoGame {
         
         accept.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                login.LoginScreen();
-                frame1.dispose();
+                System.out.println(checkBox.isSelected());
+                if (checkBox.isSelected() == true) {
+                    login.LoginScreen();
+                    frame1.dispose();
+                }
             }
         });
     }
