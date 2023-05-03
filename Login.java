@@ -6,7 +6,7 @@ import javax.swing.border.Border;
 public class Login {
     public void LoginScreen() {
         System.out.println("Launching Login Screen"); // Debug
-        Game games = new Game();
+        GameSelector games = new GameSelector();
         System.out.println("Remove Debug Game 1 after debugging");
 
         JFrame lgnFrame = new JFrame("Login");

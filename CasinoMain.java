@@ -3,7 +3,7 @@ import java.io.FileNotFoundException;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class Splash {
+public class CasinoMain {
     public static void main (String[] args) throws InterruptedException, FileNotFoundException{
         JFrame splash = new JFrame();
         TermsCon termsCon = new TermsCon();
