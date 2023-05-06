@@ -1,13 +1,15 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileNotFoundException;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 
 public class Login {
-    public void LoginScreen() {
+    public void loginScreen() throws FileNotFoundException {
         System.out.println("Launching Login Screen"); // Debug
-        GameSelector games = new GameSelector();
-        System.out.println("Remove Debug Game 1 after debugging");
+        TermsCon termsCondition = new TermsCon();
+        System.out.println("Remove Debug after debugging");
 
         JFrame lgnFrame = new JFrame("Login");
 
@@ -42,24 +44,42 @@ public class Login {
         JLabel or = new JLabel("or");
         or.setBounds(245, 249, 12, 15);
         or.setFont(new Font("Serif", Font.PLAIN, 12));
+        
         JLabel register = new JLabel("Create an Account");
         register.setBounds(189, 269, 124, 17);
         register.setFont(new Font("Serif", Font.PLAIN, 14));
+
+        register.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // Handle the click event here
+                try {
+                    termsCondition.Terms();
+                } catch (FileNotFoundException e1) {
+                    e1.printStackTrace();
+                }
+                lgnFrame.dispose();
+            }
+        });
 
         JButton dbgGame1 = new JButton("Debug Game 1");
         dbgGame1.setBounds(24,247,84,36);
         dbgGame1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                games.Game1();
+                try {
+                    termsCondition.Terms();
+                } catch (FileNotFoundException e1) {
+                    e1.printStackTrace();
+                }
                 lgnFrame.dispose();
             }
         });
 
-        lgnFrame.setSize(500, 300);
-        lgnFrame.setResizable(false);
-        lgnFrame.setVisible(true);
+        lgnFrame.setSize(520, 366);
+        lgnFrame.setMinimumSize(new Dimension(520, 366));
         lgnFrame.setLayout(null);
         lgnFrame.setLocationRelativeTo(null);
+        lgnFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         lgnFrame.add(username);
         lgnFrame.add(password);
         lgnFrame.add(email);
@@ -70,5 +90,7 @@ public class Login {
         lgnFrame.add(register);
 
         lgnFrame.add(dbgGame1);
+
+        lgnFrame.setVisible(true);
     }
 }

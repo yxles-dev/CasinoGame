@@ -8,56 +8,38 @@
  * Subject: Computer Programming 3
  */
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import javax.swing.*;
-import java.awt.Font;
+
+import java.awt.*;
 import java.awt.event.*;
 
 public class TermsCon {
-    public void Terms() throws FileNotFoundException {
-        System.out.println("Hello World!");
-        Login login = new Login();
 
+    public void Terms() throws FileNotFoundException {
+        Register reg = new Register();
+        Login login = new Login();
+        TextReader readText = new TextReader();
+
+        // TaC Components
         JLabel text = new JLabel("Terms and Conditions");
         text.setFont(new Font(null, Font.PLAIN, 20));
+        text.setBounds(146, 14, 207, 24);
 
         JCheckBox checkBox = new JCheckBox("I agree to the terms and policy of the game");
         checkBox.setBounds(135, 256, 229, 12);
 
-
-        FileReader reader = new FileReader("src/terms.txt");
-        BufferedReader br = new BufferedReader(reader);
-
-        // Import terms.txt to String
-        String line;
-        StringBuilder sb = new StringBuilder();
-
-        try {
-            while ((line = br.readLine()) != null) {
-                sb.append(line).append("\n");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            br.close();
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        
-        String ToContent = sb.toString();
-        JTextArea TaC = new JTextArea(ToContent);
+        // Show terms.txt to TaC
+        readText.setText("src/terms.txt");
+        JTextArea TaC = new JTextArea(readText.getText());
         
 
+        // Frame initialization
         JFrame frame1 = new JFrame("Casino Game");
         JScrollPane scroll = new JScrollPane(TaC);
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         JPanel panel = new JPanel();
-        ImageIcon icon = new ImageIcon("icon.png");
+        ImageIcon icon = new ImageIcon("src/icon.png");
         frame1.setIconImage(icon.getImage());
         
 
@@ -76,13 +58,14 @@ public class TermsCon {
         accept.setBorderPainted(false);
         deny.setBounds(380,247,84,36);
         deny.setBorderPainted(false);
-        frame1.setSize(500,300);
+
+        frame1.setSize(520,357);
+        frame1.setMinimumSize(new Dimension(520, 357));
         frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame1.setResizable(false);
+        frame1.setResizable(true);
         frame1.setLayout(null);
         frame1.setLocationRelativeTo(null);
         frame1.setVisible(true);
-        text.setBounds(146, 14, 207, 24);
         frame1.add(scroll);
         frame1.add(accept);
         frame1.add(panel);
@@ -92,7 +75,13 @@ public class TermsCon {
 
         deny.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){  
-                    System.exit(0);
+                    try {
+                        login.loginScreen();
+                    } catch (FileNotFoundException e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    }
+                    frame1.dispose();
             }  
         });
         
@@ -100,7 +89,7 @@ public class TermsCon {
             public void actionPerformed(ActionEvent e) {
                 System.out.println(checkBox.isSelected());
                 if (checkBox.isSelected() == true) {
-                    login.LoginScreen();
+                    reg.registerScreen();
                     frame1.dispose();
                 }
             }
