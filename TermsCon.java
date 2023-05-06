@@ -15,7 +15,9 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class TermsCon {
+
     public void Terms() throws FileNotFoundException {
+        Register reg = new Register();
         Login login = new Login();
         TextReader readText = new TextReader();
 
@@ -73,7 +75,13 @@ public class TermsCon {
 
         deny.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){  
-                    System.exit(0);
+                    try {
+                        login.loginScreen();
+                    } catch (FileNotFoundException e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    }
+                    frame1.dispose();
             }  
         });
         
@@ -81,11 +89,7 @@ public class TermsCon {
             public void actionPerformed(ActionEvent e) {
                 System.out.println(checkBox.isSelected());
                 if (checkBox.isSelected() == true) {
-                    try {
-                        login.LoginScreen();
-                    } catch (FileNotFoundException e1) {
-                        e1.printStackTrace();
-                    }
+                    reg.registerScreen();
                     frame1.dispose();
                 }
             }

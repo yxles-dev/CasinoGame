@@ -28,6 +28,6 @@ public class CasinoMain extends JFrame {
         Login login = new Login();
         CasinoMain bim = new CasinoMain();
         bim.BackgroundImageJFrame();
-        login.LoginScreen();
+        login.loginScreen();
     }
 }
