@@ -1,7 +1,7 @@
-# CasinoGame
-[alt text](https://github.com/yxles-dev/CasinoGame/blob/d1baa6bb0d7f19f61026d65f3f8af0e2bf539710/src/icons/intro.png "DigiBet-Logo")
+# DigiBet
+![alt text](https://raw.githubusercontent.com/yxles-dev/CasinoGame/nightly/src/icons/intro.png "DigiBet-Logo")
 
-CasinoGame by Group 1 (ComProg3)
+DigiBet by Group 1 (Casino Game ComProg3)
 
 Members:  
 Soria  
