@@ -1,26 +1,33 @@
-import java.io.FileNotFoundException;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 
-public class CasinoMain {
-    public static void main (String[] args) throws InterruptedException, FileNotFoundException{
-        JFrame splash = new JFrame();
-        TermsCon termsCon = new TermsCon();
+import java.awt.*;
+import java.io.FileNotFoundException;
 
-        JLabel splashName = new JLabel("ICT201 ComProg3");
-        splashName.setBounds(50,50,100,100);
-
-        splash.setSize(500, 300);
-        splash.setResizable(false);
-        splash.setVisible(true);
-        splash.setLayout(null);
-        splash.setLocationRelativeTo(null);
-        splash.add(splashName);
+public class CasinoMain extends JFrame {
+    public void BackgroundImageJFrame() throws InterruptedException, FileNotFoundException   
+    {
+        this.setUndecorated(true);
+        setTitle("DigiBet ICT201");
+        setSize(899,421);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setVisible(true);
 
         Thread.sleep(3000);
-        splash.dispose();
-        termsCon.Terms();
+        this.dispose();
+    }
 
+    public void paint(Graphics g)
+    {
+        Image img = Toolkit.getDefaultToolkit().getImage("src/icons/Intro.png");
+
+        g.drawImage(img, 0, 0, this);
+    }
+    public static void main (String[] args) throws FileNotFoundException, InterruptedException{
+        Login login = new Login();
+        CasinoMain bim = new CasinoMain();
+        bim.BackgroundImageJFrame();
+        login.LoginScreen();
     }
 }

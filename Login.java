@@ -1,12 +1,14 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileNotFoundException;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 
 public class Login {
-    public void LoginScreen() {
+    public void LoginScreen() throws FileNotFoundException {
         System.out.println("Launching Login Screen"); // Debug
-        GameSelector games = new GameSelector();
+        TermsCon termsCondition = new TermsCon();
         System.out.println("Remove Debug Game 1 after debugging");
 
         JFrame lgnFrame = new JFrame("Login");
@@ -50,13 +52,17 @@ public class Login {
         dbgGame1.setBounds(24,247,84,36);
         dbgGame1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                games.Game1();
+                try {
+                    termsCondition.Terms();
+                } catch (FileNotFoundException e1) {
+                    e1.printStackTrace();
+                }
                 lgnFrame.dispose();
             }
         });
 
-        lgnFrame.setSize(500, 300);
-        lgnFrame.setResizable(false);
+        lgnFrame.setSize(520, 366);
+        lgnFrame.setMinimumSize(new Dimension(520, 366));
         lgnFrame.setVisible(true);
         lgnFrame.setLayout(null);
         lgnFrame.setLocationRelativeTo(null);

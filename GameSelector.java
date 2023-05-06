@@ -20,15 +20,15 @@ public class GameSelector {
 
         
 
-        ImageIcon img1 = new ImageIcon("src/icons/taoibon.jpg");
+        ImageIcon img1 = new ImageIcon("src/icons/taoibon.png");
         Image img11 = img1.getImage();
         Image newimg1 = img11.getScaledInstance(156, 186, java.awt.Image.SCALE_SMOOTH);
 
-        ImageIcon img2 = new ImageIcon("src/icons/pulaputi.jpg");
+        ImageIcon img2 = new ImageIcon("src/icons/pulaputi.png");
         Image img22 = img2.getImage();
         Image newimg2 = img22.getScaledInstance(156, 186, java.awt.Image.SCALE_SMOOTH);
 
-        ImageIcon img3 = new ImageIcon("src/icons/sabong.jpg");
+        ImageIcon img3 = new ImageIcon("src/icons/sabong.png");
         Image img33 = img3.getImage();
         Image newimg3 = img33.getScaledInstance(156, 186, java.awt.Image.SCALE_SMOOTH);
 
