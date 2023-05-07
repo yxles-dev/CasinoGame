@@ -25,7 +25,7 @@ public class TextReader {
             e.printStackTrace();
         }
         
-        String text = sb.toString();
+        text = sb.toString();
         return text;
     }
 

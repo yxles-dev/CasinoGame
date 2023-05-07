@@ -1,4 +1,4 @@
-import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 
@@ -9,6 +9,16 @@ import javax.swing.JLabel;
 
 public class GameSelector {
     public void Game1() {
+        //Loading Screen
+        JFrame loading = new JFrame();
+        JLabel text = new JLabel("Loading...");
+        text.setBounds(74, 30, 121, 26);
+        loading.setTitle("Loading");
+        loading.setSize(269,86);
+        loading.setLocationRelativeTo(null);
+        loading.add(text);
+        loading.setVisible(true);
+
         System.out.println("Debug Game 1");
         System.out.println("To be used for Coin-Flip unless changed");
 
@@ -48,16 +58,17 @@ public class GameSelector {
         JButton purchase = new JButton("+");
         purchase.setBounds(635, 69, 25, 24);
         
-        coinflip.setSize(678, 391);
-        coinflip.setVisible(true);
+        coinflip.setSize(698, 458);
+        coinflip.setMinimumSize(new Dimension(698, 458));
         coinflip.setLayout(null);
         coinflip.setLocationRelativeTo(null);
-        coinflip.setBackground(Color.decode("#2EC4B6"));
         coinflip.add(name);
         coinflip.add(game1);
         coinflip.add(game2);
         coinflip.add(game3);
         coinflip.add(money);
         coinflip.add(purchase);
+        loading.dispose();
+        coinflip.setVisible(true);
     }
 }

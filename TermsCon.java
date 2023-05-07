@@ -78,7 +78,6 @@ public class TermsCon {
                     try {
                         login.loginScreen();
                     } catch (FileNotFoundException e1) {
-                        // TODO Auto-generated catch block
                         e1.printStackTrace();
                     }
                     frame1.dispose();

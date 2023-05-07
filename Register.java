@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.*;
 import java.io.FileNotFoundException;
 import java.sql.*;
@@ -121,30 +122,67 @@ public class Register implements ActionListener {
         } else if (!confirmPassword.equals(password)) {
             System.out.println("No");
             JOptionPane.showMessageDialog(regFrame,"Password doesnt match");
-        } else {
-
-            PreparedStatement ps;
-            String query = "INSERT INTO `account`(`u_fname`, `u_lname`, `u_uname`, `u_password`) VALUES (?,?,?,?)";
-
-            System.out.println(uName+fName+lName+password);
+        } else
             try {
-                ps = MyConnection.getConnection().prepareStatement(query);
-                ps.setString(1, fName);
-                ps.setString(2, lName);
-                ps.setString(3, uName);
-                ps.setString(4, password);
+                if (checkUsername(uName) == true) {
+                    try {
+                        if (checkUsername(uName) == true) {
+                            JOptionPane.showMessageDialog(regFrame,"This account already exists");
+                        }
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+                } else {
+
+                    PreparedStatement ps;
+                    String query = "INSERT INTO `account`(`u_fname`, `u_lname`, `u_uname`, `u_password`) VALUES (?,?,?,?)";
+
+                    System.out.println(uName+fName+lName+password);
                     
-                if (ps.executeUpdate() > 0)
-                {
-                    JOptionPane.showMessageDialog(null, "New User Add");
-                    login.loginScreen();
-                    regFrame.dispose();
+                    try {
+                        ps = MyConnection.getConnection().prepareStatement(query);
+                        ps.setString(1, fName);
+                        ps.setString(2, lName);
+                        ps.setString(3, uName);
+                        ps.setString(4, password);
+                            
+                        if (ps.executeUpdate() > 0)
+                        {
+                            JOptionPane.showMessageDialog(null, "New User Add");
+                            login.loginScreen();
+                            regFrame.dispose();
+                        }
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    } catch (FileNotFoundException e1) {
+                        e1.printStackTrace();
+                    }
                 }
+            } catch (HeadlessException e1) {
+                e1.printStackTrace();
             } catch (SQLException e1) {
                 e1.printStackTrace();
-            } catch (FileNotFoundException e1) {
-                e1.printStackTrace();
             }
+    }
+
+    public boolean checkUsername(String username) throws SQLException
+    {
+        PreparedStatement ps;
+        ResultSet rs;
+        boolean checkUser = false;
+        String query = "SELECT * FROM `account` WHERE `u_uname` =?";
+        
+        
+        ps = MyConnection.getConnection().prepareStatement(query);
+        ps.setString(1, username);
+            
+        rs = ps.executeQuery();
+            
+        if(rs.next())
+        {
+            checkUser = true;
         }
+
+        return checkUser;
     }
 }

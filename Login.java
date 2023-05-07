@@ -1,19 +1,23 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.io.FileNotFoundException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 
 public class Login {
+    JTextArea username = new JTextArea();
+    JPasswordField password = new JPasswordField();
+    JFrame lgnFrame = new JFrame("Login");
+    GameSelector gameSelector = new GameSelector();
+
     public void loginScreen() throws FileNotFoundException {
         System.out.println("Launching Login Screen"); // Debug
         TermsCon termsCondition = new TermsCon();
         System.out.println("Remove Debug after debugging");
-
-        JFrame lgnFrame = new JFrame("Login");
-
-        
 
         JLabel text = new JLabel("Login");
         text.setFont(new Font(null, Font.PLAIN, 20));
@@ -21,9 +25,6 @@ public class Login {
         email.setFont(new Font(null, Font.PLAIN, 14));
         JLabel pass = new JLabel("Password");
         pass.setFont(new Font(null, Font.PLAIN, 14));
-
-        JTextArea username = new JTextArea();
-        JPasswordField password = new JPasswordField();
 
         text.setBounds(32, 25, 52, 24);
         email.setBounds(76, 67, 46, 17);
@@ -40,6 +41,11 @@ public class Login {
         JButton signin = new JButton(new ImageIcon("src/icons/sign-in.png"));
         signin.setBounds(194,212,112,32);
         signin.setBorderPainted(false);
+        signin.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent f) {
+                login();
+            }
+        });
 
         JLabel or = new JLabel("or");
         or.setBounds(245, 249, 12, 15);
@@ -92,5 +98,38 @@ public class Login {
         lgnFrame.add(dbgGame1);
 
         lgnFrame.setVisible(true);
+    }
+
+    public void login() {
+        PreparedStatement ps;
+        ResultSet rs;
+        String uname = username.getText();
+        String pass = String.valueOf(password.getPassword());
+        
+        String query = "SELECT * FROM `account` WHERE `u_uname` =? AND `u_password` =?";
+        
+        try {
+            ps = MyConnection.getConnection().prepareStatement(query);
+            
+            ps.setString(1, uname);
+            ps.setString(2, pass);
+            
+            rs = ps.executeQuery();
+            
+            if(rs.next())
+            {
+                JOptionPane.showMessageDialog(lgnFrame,"Login Successful");
+                lgnFrame.dispose();
+                gameSelector.Game1();
+            }
+            else{
+                    JOptionPane.showMessageDialog(null, "Incorrect Username Or Password", "Login Failed", 2);
+                }
+            
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
+        
+        
     }
 }

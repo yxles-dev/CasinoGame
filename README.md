@@ -16,12 +16,19 @@ Bagulbagul
 - **Clean this code**
 - [ ] TermsCon
 - [ ] Login
+- [ ] Registration
 - [ ] GameSelector
 - [ ] CasinoMain
 - **Implement this**
 - [x] Splash Screen
-- [ ] Fully Working Login Page (with or without using SQL)
+- [X] Fully Working Login Page (with SQL)
+- [X] Fully Working Registration (with SQL)
 - [ ] Purchase Screen
+- **Fix Layout and allow Resizing**
+- [ ] Terms and Conditions
+- [ ] Login
+- [ ] Registration
+- [ ] Game Selector
 - **Games**
 - [ ] Sabong
 - [ ] Pula-Puti
