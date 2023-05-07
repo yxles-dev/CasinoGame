@@ -17,17 +17,16 @@ public class Login {
     public void loginScreen() throws FileNotFoundException {
         System.out.println("Launching Login Screen"); // Debug
         TermsCon termsCondition = new TermsCon();
-        System.out.println("Remove Debug after debugging");
 
         JLabel text = new JLabel("Login");
         text.setFont(new Font(null, Font.PLAIN, 20));
-        JLabel email = new JLabel("E-Mail");
+        JLabel email = new JLabel("Username");
         email.setFont(new Font(null, Font.PLAIN, 14));
         JLabel pass = new JLabel("Password");
         pass.setFont(new Font(null, Font.PLAIN, 14));
 
         text.setBounds(32, 25, 52, 24);
-        email.setBounds(76, 67, 46, 17);
+        email.setBounds(76, 67, 69, 17);
         pass.setBounds(76,130,69,17);
 
         username.setBounds(83, 91, 335, 32);
@@ -68,19 +67,6 @@ public class Login {
             }
         });
 
-        JButton dbgGame1 = new JButton("Debug Game 1");
-        dbgGame1.setBounds(24,247,84,36);
-        dbgGame1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    termsCondition.Terms();
-                } catch (FileNotFoundException e1) {
-                    e1.printStackTrace();
-                }
-                lgnFrame.dispose();
-            }
-        });
-
         lgnFrame.setSize(520, 366);
         lgnFrame.setMinimumSize(new Dimension(520, 366));
         lgnFrame.setLayout(null);
@@ -94,8 +80,6 @@ public class Login {
         lgnFrame.add(signin);
         lgnFrame.add(or);
         lgnFrame.add(register);
-
-        lgnFrame.add(dbgGame1);
 
         lgnFrame.setVisible(true);
     }
