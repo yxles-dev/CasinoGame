@@ -1,5 +1,5 @@
 # DigiBet
-![alt text](https://raw.githubusercontent.com/yxles-dev/CasinoGame/nightly/src/icons/intro.png "DigiBet-Logo")
+![alt text](https://raw.githubusercontent.com/yxles-dev/CasinoGame/main/src/icons/logo.png "DigiBet-Logo")
 
 DigiBet by Group 1 (Casino Game ComProg3)
 
