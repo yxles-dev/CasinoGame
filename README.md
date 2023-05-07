@@ -21,8 +21,8 @@ Bagulbagul
 - [ ] CasinoMain
 - **Implement this**
 - [x] Splash Screen
-- [ ] Fully Working Login Page
-- [X] Fully Working Registration
+- [X] Fully Working Login Page (with SQL)
+- [X] Fully Working Registration (with SQL)
 - [ ] Purchase Screen
 - **Fix Layout and allow Resizing**
 - [ ] Terms and Conditions
