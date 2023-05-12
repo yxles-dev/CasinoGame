@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 
 public class GameSelector {
     public void Game1() {
+        AccountInformation accInf = new AccountInformation();
         //Loading Screen
         JFrame loading = new JFrame();
         JLabel text = new JLabel("Loading...");
@@ -28,7 +29,8 @@ public class GameSelector {
         name.setBounds(256,105,165,29);
         name.setFont(new Font(null, Font.PLAIN, 24));
 
-        
+        accInf.setID(6); // hardcoded id for testing
+        accInf.getCash();
 
         ImageIcon img1 = new ImageIcon("src/icons/taoibon.png");
         Image img11 = img1.getImage();
@@ -51,7 +53,7 @@ public class GameSelector {
         game2.setBounds(261, 154, 156, 186);
         game3.setBounds(453, 154, 156, 186);
 
-        JLabel money = new JLabel("P 1000.00");
+        JLabel money = new JLabel("₱ "+String.valueOf(accInf.getCash())+".00");
         money.setBounds(498, 69, 162, 24);
         money.setFont(new Font("Serif", Font.BOLD, 20));
 

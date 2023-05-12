@@ -8,13 +8,17 @@ import java.sql.SQLException;
 import javax.swing.*;
 import javax.swing.border.Border;
 
+import net.miginfocom.swing.MigLayout;
+
 public class Login {
-    JTextArea username = new JTextArea();
-    JPasswordField password = new JPasswordField();
+    AccountInformation accInf = new AccountInformation();
+    JTextField username = new JTextField(30);
+    JPasswordField password = new JPasswordField(30);
     JFrame lgnFrame = new JFrame("Login");
     GameSelector gameSelector = new GameSelector();
 
     public void loginScreen() throws FileNotFoundException {
+        lgnFrame.setLayout(new MigLayout("fill"));
         System.out.println("Launching Login Screen"); // Debug
         TermsCon termsCondition = new TermsCon();
 
@@ -25,12 +29,6 @@ public class Login {
         JLabel pass = new JLabel("Password");
         pass.setFont(new Font(null, Font.PLAIN, 14));
 
-        text.setBounds(32, 25, 52, 24);
-        email.setBounds(76, 67, 69, 17);
-        pass.setBounds(76,130,69,17);
-
-        username.setBounds(83, 91, 335, 32);
-        password.setBounds(83, 154, 335, 32);
         Border blackline = BorderFactory.createLineBorder(Color.black);
         username.setBorder(blackline);
         username.setBackground(Color.WHITE);
@@ -38,7 +36,7 @@ public class Login {
         password.setBorder(blackline);
 
         JButton signin = new JButton(new ImageIcon("src/icons/sign-in.png"));
-        signin.setBounds(194,212,112,32);
+        signin.setSize(112, 32);
         signin.setBorderPainted(false);
         signin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent f) {
@@ -47,11 +45,9 @@ public class Login {
         });
 
         JLabel or = new JLabel("or");
-        or.setBounds(245, 249, 12, 15);
         or.setFont(new Font("Serif", Font.PLAIN, 12));
         
         JLabel register = new JLabel("Create an Account");
-        register.setBounds(189, 269, 124, 17);
         register.setFont(new Font("Serif", Font.PLAIN, 14));
 
         register.addMouseListener(new MouseAdapter() {
@@ -67,19 +63,19 @@ public class Login {
             }
         });
 
-        lgnFrame.setSize(520, 366);
+        // lgnFrame.setSize(520, 366);
         lgnFrame.setMinimumSize(new Dimension(520, 366));
-        lgnFrame.setLayout(null);
         lgnFrame.setLocationRelativeTo(null);
         lgnFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        lgnFrame.add(username);
-        lgnFrame.add(password);
-        lgnFrame.add(email);
-        lgnFrame.add(pass);
-        lgnFrame.add(text);
-        lgnFrame.add(signin);
-        lgnFrame.add(or);
-        lgnFrame.add(register);
+        lgnFrame.add(text, "dock north, gapleft 40, gaptop 30");
+        lgnFrame.add(email, "cell 0 0, gapleft 60");
+        lgnFrame.add(username, "cell 1 0, growx");
+        lgnFrame.add(pass, "cell 0 1, gapleft 60");
+        lgnFrame.add(password, "cell 1 1, growx");
+        lgnFrame.add(signin, "cell 0 2, center, gapleft 60");
+        lgnFrame.add(or, "cell 1 2, center");
+        lgnFrame.add(register, "cell 2 2, center, gapright 60");
+        lgnFrame.pack();
 
         lgnFrame.setVisible(true);
     }
