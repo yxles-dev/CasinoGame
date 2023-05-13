@@ -8,9 +8,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class GameSelector {
+    AccountInformation accInf = new AccountInformation();
     public void Game1() {
-        AccountInformation accInf = new AccountInformation();
         //Loading Screen
+        int uID = AccountInformation.getuID();
+        System.out.println("The value of uIDFinal when I moved to GameSelector is "+uID);
         JFrame loading = new JFrame();
         JLabel text = new JLabel("Loading...");
         text.setBounds(74, 30, 121, 26);
@@ -29,7 +31,6 @@ public class GameSelector {
         name.setBounds(256,105,165,29);
         name.setFont(new Font(null, Font.PLAIN, 24));
 
-        accInf.setID(6); // hardcoded id for testing
         accInf.getCash();
 
         ImageIcon img1 = new ImageIcon("src/icons/taoibon.png");

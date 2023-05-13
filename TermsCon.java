@@ -13,6 +13,7 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import net.miginfocom.swing.MigLayout;
 
 public class TermsCon {
 
@@ -24,10 +25,10 @@ public class TermsCon {
         // TaC Components
         JLabel text = new JLabel("Terms and Conditions");
         text.setFont(new Font(null, Font.PLAIN, 20));
-        text.setBounds(146, 14, 207, 24);
+        // text.setBounds(146, 14, 207, 24);
 
         JCheckBox checkBox = new JCheckBox("I agree to the terms and policy of the game");
-        checkBox.setBounds(135, 256, 229, 12);
+        // checkBox.setBounds(135, 256, 229, 12);
 
         // Show terms.txt to TaC
         readText.setText("src/terms.txt");
@@ -38,7 +39,6 @@ public class TermsCon {
         JFrame frame1 = new JFrame("Casino Game");
         JScrollPane scroll = new JScrollPane(TaC);
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        JPanel panel = new JPanel();
         ImageIcon icon = new ImageIcon("src/icon.png");
         frame1.setIconImage(icon.getImage());
         
@@ -48,30 +48,30 @@ public class TermsCon {
         JButton deny = new JButton(new ImageIcon("src/icons/Deny.png"));
         
 
-        scroll.setBounds(60, 48, 379, 168);
+        // scroll.setBounds(60, 48, 379, 168);
+        scroll.setSize(379, 168);
         TaC.setEditable(false);
         TaC.setLineWrap(true);
         TaC.setWrapStyleWord(true);
 
         
-        accept.setBounds(24,247,84,36);
+        // accept.setBounds(24,247,84,36);
         accept.setBorderPainted(false);
-        deny.setBounds(380,247,84,36);
+        // deny.setBounds(380,247,84,36);
         deny.setBorderPainted(false);
 
         frame1.setSize(520,357);
         frame1.setMinimumSize(new Dimension(520, 357));
         frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame1.setResizable(true);
-        frame1.setLayout(null);
+        frame1.setLayout(new MigLayout("fill"));
         frame1.setLocationRelativeTo(null);
         frame1.setVisible(true);
-        frame1.add(scroll);
-        frame1.add(accept);
-        frame1.add(panel);
-        frame1.add(deny);
-        frame1.add(text);
-        frame1.add(checkBox);
+        frame1.add(text, "span 2, center, wrap");
+        frame1.add(scroll, "cell 0 1, center, width 379!, height 168!, wrap");
+        frame1.add(checkBox, "cell 0 2, center");
+        frame1.add(accept, "cell 0 3, center, gapright 60, width 84!, height 36!");
+        frame1.add(deny, "cell 0 3, center, width 84!, height 36!");
 
         deny.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){  

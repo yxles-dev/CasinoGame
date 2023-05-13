@@ -1,9 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.io.FileNotFoundException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -12,10 +10,11 @@ import net.miginfocom.swing.MigLayout;
 
 public class Login {
     AccountInformation accInf = new AccountInformation();
-    JTextField username = new JTextField(30);
-    JPasswordField password = new JPasswordField(30);
+    JTextField username = new JTextField();
+    JPasswordField password = new JPasswordField();
     JFrame lgnFrame = new JFrame("Login");
     GameSelector gameSelector = new GameSelector();
+    public static String userName;
 
     public void loginScreen() throws FileNotFoundException {
         lgnFrame.setLayout(new MigLayout("fill"));
@@ -36,13 +35,17 @@ public class Login {
         password.setBorder(blackline);
 
         JButton signin = new JButton(new ImageIcon("src/icons/sign-in.png"));
-        signin.setSize(112, 32);
+        // signin.setSize(112, 32);
+        signin.setOpaque(false);
+        signin.setContentAreaFilled(false);
+        // signin.setPreferredSize(new Dimension(112, 32));
         signin.setBorderPainted(false);
         signin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent f) {
                 login();
             }
         });
+        password.addActionListener(e -> signin.doClick());
 
         JLabel or = new JLabel("or");
         or.setFont(new Font("Serif", Font.PLAIN, 12));
@@ -69,10 +72,10 @@ public class Login {
         lgnFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         lgnFrame.add(text, "dock north, gapleft 40, gaptop 30");
         lgnFrame.add(email, "cell 0 0, gapleft 60");
-        lgnFrame.add(username, "cell 1 0, growx");
+        lgnFrame.add(username, "cell 1 0, span 2, growx, gapright 20");
         lgnFrame.add(pass, "cell 0 1, gapleft 60");
-        lgnFrame.add(password, "cell 1 1, growx");
-        lgnFrame.add(signin, "cell 0 2, center, gapleft 60");
+        lgnFrame.add(password, "cell 1 1, span 2, growx, gapright 20");
+        lgnFrame.add(signin, "cell 0 2, center, gapleft 60, width 112!, height 32!");
         lgnFrame.add(or, "cell 1 2, center");
         lgnFrame.add(register, "cell 2 2, center, gapright 60");
         lgnFrame.pack();
@@ -98,6 +101,7 @@ public class Login {
             
             if(rs.next())
             {
+                accInf.getID(uname);
                 JOptionPane.showMessageDialog(lgnFrame,"Login Successful");
                 lgnFrame.dispose();
                 gameSelector.Game1();
@@ -106,6 +110,8 @@ public class Login {
                     JOptionPane.showMessageDialog(null, "Incorrect Username Or Password", "Login Failed", 2);
                 }
             
+        } catch (SQLSyntaxErrorException e1) {
+            JOptionPane.showMessageDialog(null, "Cannot connect to the internet", "Login Failed", 2);
         } catch (SQLException e1) {
             e1.printStackTrace();
         }

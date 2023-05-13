@@ -8,6 +8,8 @@ import java.sql.*;
 import javax.swing.*;
 import javax.swing.border.Border;
 
+import net.miginfocom.swing.MigLayout;
+
 
 
 public class Register implements ActionListener {
@@ -16,9 +18,9 @@ public class Register implements ActionListener {
 
     JFrame regFrame = new JFrame();
 
-    JTextArea inputFN = new JTextArea();
-    JTextArea inputLN = new JTextArea();
-    JTextArea inputUN = new JTextArea();
+    JTextField inputFN = new JTextField();
+    JTextField inputLN = new JTextField();
+    JTextField inputUN = new JTextField();
     JPasswordField inputPW = new JPasswordField();
     JPasswordField inputCPW = new JPasswordField();
 
@@ -42,13 +44,13 @@ public class Register implements ActionListener {
         inputLN.setBounds(231, 120, 158, 20);
         inputLN.setBorder(blackline);
 
-        JLabel username = new JLabel("username:");
+        JLabel username = new JLabel("Username:");
         username.setFont(new Font(null, Font.PLAIN, 15));
         username.setBounds(120, 147, 82, 20);
         inputUN.setBounds(231, 147, 158, 20);
         inputUN.setBorder(blackline);
 
-        JLabel password = new JLabel("password:");
+        JLabel password = new JLabel("Password:");
         password.setFont(new Font(null, Font.PLAIN, 15));
         password.setBounds(120, 173, 82, 20);
         inputPW.setBounds(231, 173, 158, 20);
@@ -85,23 +87,23 @@ public class Register implements ActionListener {
 
         regFrame.setSize(461,391);
         regFrame.setVisible(true);
-        regFrame.setLayout(null);
+        regFrame.setLayout(new MigLayout("fill"));
         regFrame.setLocationRelativeTo(null);
         regFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        regFrame.add(regJLabel);
-        regFrame.add(firstName);
-        regFrame.add(lastName);
-        regFrame.add(username);
-        regFrame.add(password);
-        regFrame.add(confirmPass);
-        regFrame.add(inputFN);
-        regFrame.add(inputLN);
-        regFrame.add(inputUN);
-        regFrame.add(inputPW);
-        regFrame.add(inputCPW);
-        regFrame.add(cancel);
-        regFrame.add(accept);
+        regFrame.add(regJLabel, "dock north, gapleft 40, gaptop 30");
+        regFrame.add(firstName, "cell 0 0, gapleft 60, gapright 30, gaptop 10");
+        regFrame.add(inputFN, "cell 0 0, growx, gapright 20");
+        regFrame.add(lastName, "cell 0 1, gapleft 60, gapright 25");
+        regFrame.add(inputLN, "cell 0 1, growx, gapright 20");
+        regFrame.add(username, "cell 0 2, gapleft 60, gapright 27");
+        regFrame.add(inputUN, "cell 0 2, growx, gapright 20");
+        regFrame.add(password, "cell 0 3, gapleft 60, gapright 31");
+        regFrame.add(inputPW, "cell 0 3, growx, gapright 20");
+        regFrame.add(confirmPass, "cell 0 4, gapleft 60");
+        regFrame.add(inputCPW, "cell 0 4, growx, gapright 20");
+        regFrame.add(cancel, "cell 0 5, center, gapright 60");
+        regFrame.add(accept, "cell 0 5, center");
     }
 
     public void actionPerformed(ActionEvent e) {
