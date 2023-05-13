@@ -14,6 +14,7 @@ public class Login {
     JPasswordField password = new JPasswordField();
     JFrame lgnFrame = new JFrame("Login");
     GameSelector gameSelector = new GameSelector();
+    SoundManager soundManager = new SoundManager();
     public static String userName;
 
     public void loginScreen() throws FileNotFoundException {
@@ -35,13 +36,20 @@ public class Login {
         password.setBorder(blackline);
 
         JButton signin = new JButton(new ImageIcon("src/icons/sign-in.png"));
-        // signin.setSize(112, 32);
         signin.setOpaque(false);
         signin.setContentAreaFilled(false);
-        // signin.setPreferredSize(new Dimension(112, 32));
         signin.setBorderPainted(false);
+        signin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                signin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                signin.setCursor(Cursor.getDefaultCursor());
+            }
+        });
         signin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent f) {
+                soundManager.playButton();
                 login();
             }
         });
@@ -53,16 +61,33 @@ public class Login {
         JLabel register = new JLabel("Create an Account");
         register.setFont(new Font("Serif", Font.PLAIN, 14));
 
+        register.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                register.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                register.setCursor(Cursor.getDefaultCursor());
+            }
+        });
         register.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 // Handle the click event here
                 try {
+                    soundManager.playButton();
                     termsCondition.Terms();
                 } catch (FileNotFoundException e1) {
                     e1.printStackTrace();
                 }
                 lgnFrame.dispose();
+            }
+        });
+
+        JButton debugButton = new JButton("Debug Login");
+        debugButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent d) {
+                soundManager.playButton();
+                debugLogin();
             }
         });
 
@@ -78,6 +103,7 @@ public class Login {
         lgnFrame.add(signin, "cell 0 2, center, gapleft 60, width 112!, height 32!");
         lgnFrame.add(or, "cell 1 2, center");
         lgnFrame.add(register, "cell 2 2, center, gapright 60");
+        lgnFrame.add(debugButton, "cell 1 3, center");
         lgnFrame.pack();
 
         lgnFrame.setVisible(true);
@@ -115,7 +141,39 @@ public class Login {
         } catch (SQLException e1) {
             e1.printStackTrace();
         }
+    }
+
+    public void debugLogin() {
+        PreparedStatement ps;
+        ResultSet rs;
+        String uname = "Debug";
+        String pass = "debug";
         
+        String query = "SELECT * FROM `account` WHERE `u_uname` =? AND `u_password` =?";
         
+        try {
+            ps = MyConnection.getConnection().prepareStatement(query);
+            
+            ps.setString(1, uname);
+            ps.setString(2, pass);
+            
+            rs = ps.executeQuery();
+            
+            if(rs.next())
+            {
+                accInf.getID(uname);
+                JOptionPane.showMessageDialog(lgnFrame,"Login Successful");
+                lgnFrame.dispose();
+                gameSelector.Game1();
+            }
+            else{
+                    JOptionPane.showMessageDialog(null, "Incorrect Username Or Password", "Login Failed", 2);
+                }
+            
+        } catch (SQLSyntaxErrorException e1) {
+            JOptionPane.showMessageDialog(null, "Cannot connect to the internet", "Login Failed", 2);
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
     }
 }

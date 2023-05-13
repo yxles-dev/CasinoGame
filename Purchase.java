@@ -1,34 +1,34 @@
-import javax.swing.*;
-import net.miginfocom.swing.MigLayout;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 
-public class Purchase extends JFrame {
-    public Purchase() {
-        // Set the layout manager to MigLayout
-        setLayout(new MigLayout());
+public class Purchase {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Label Updater");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Create the components
-        JLabel label1 = new JLabel("First Name:");
-        JLabel label2 = new JLabel("Last Name:");
-        JTextField textField1 = new JTextField(20);
-        JTextField textField2 = new JTextField(20);
-        JButton button = new JButton("Submit");
+        JLabel label = new JLabel();
+        frame.add(label);
 
-        // Add the components to the container with constraints
-        add(label1, "cell 0 0"); // cell 0,0 (row 0, column 0)
-        add(textField1, "cell 1 0"); // cell 1,0 (row 0, column 1)
-        add(label2, "cell 0 1"); // cell 0,1 (row 1, column 0)
-        add(textField2, "cell 1 1"); // cell 1,1 (row 1, column 1)
-        add(button, "cell 0 2, span 2"); // cell 0,2 (row 2, column 0), span 2 columns
+        int value = 0;
+        Runnable labelUpdater = () -> label.setText("Value: " + value);
 
-        // Set the window properties
-        setTitle("MigLayout Example");
-        setSize(400, 200);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
+        Thread valueUpdater = new Thread(() -> extracted(value, labelUpdater));
+        valueUpdater.start();
+
+        frame.pack();
+        frame.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        // Create an instance of the JFrame
-        new Purchase();
+    private static void extracted(int value, Runnable labelUpdater) {
+        while (true) {
+            value++;
+            SwingUtilities.invokeLater(labelUpdater);
+            try {
+                Thread.sleep(1000); // wait for 1 second
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

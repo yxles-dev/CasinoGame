@@ -46,6 +46,23 @@ public class TermsCon {
         // Terms and Conditions Screen
         JButton accept = new JButton(new ImageIcon("src/icons/Accept.png"));
         JButton deny = new JButton(new ImageIcon("src/icons/Deny.png"));
+
+        accept.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                accept.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                accept.setCursor(Cursor.getDefaultCursor());
+            }
+        });
+        deny.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                deny.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                deny.setCursor(Cursor.getDefaultCursor());
+            }
+        });
         
 
         // scroll.setBounds(60, 48, 379, 168);

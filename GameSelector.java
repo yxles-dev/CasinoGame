@@ -1,18 +1,21 @@
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 
 public class GameSelector {
     AccountInformation accInf = new AccountInformation();
+    DebugMenu dbgMenu = new DebugMenu();
     public void Game1() {
         //Loading Screen
-        int uID = AccountInformation.getuID();
-        System.out.println("The value of uIDFinal when I moved to GameSelector is "+uID);
         JFrame loading = new JFrame();
         JLabel text = new JLabel("Loading...");
         text.setBounds(74, 30, 121, 26);
@@ -22,8 +25,9 @@ public class GameSelector {
         loading.add(text);
         loading.setVisible(true);
 
-        System.out.println("Debug Game 1");
-        System.out.println("To be used for Coin-Flip unless changed");
+        System.out.println("Launching GameSelector");
+        // System.out.println("Debug Game 1");
+        // System.out.println("To be used for Coin-Flip unless changed");
 
         JFrame coinflip = new JFrame();
         JLabel name = new JLabel("Select a Game");
@@ -31,7 +35,7 @@ public class GameSelector {
         name.setBounds(256,105,165,29);
         name.setFont(new Font(null, Font.PLAIN, 24));
 
-        accInf.getCash();
+        accInf.setAccInf();
 
         ImageIcon img1 = new ImageIcon("src/icons/taoibon.png");
         Image img11 = img1.getImage();
@@ -51,12 +55,24 @@ public class GameSelector {
 
 
         game1.setBounds(69, 154, 156, 186);
+        game1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dbgMenu.debugMenu();
+            }
+        });
+
         game2.setBounds(261, 154, 156, 186);
         game3.setBounds(453, 154, 156, 186);
 
         JLabel money = new JLabel("₱ "+String.valueOf(accInf.getCash())+".00");
         money.setBounds(498, 69, 162, 24);
         money.setFont(new Font("Serif", Font.BOLD, 20));
+        
+        Timer timer = new Timer(1000, e -> {
+            Runnable labelUpdater = () -> money.setText("₱ "+String.valueOf(accInf.getCash())+".00");
+            SwingUtilities.invokeLater(labelUpdater);
+        });
+        timer.start();
 
         JButton purchase = new JButton("+");
         purchase.setBounds(635, 69, 25, 24);
@@ -65,6 +81,7 @@ public class GameSelector {
         coinflip.setMinimumSize(new Dimension(698, 458));
         coinflip.setLayout(null);
         coinflip.setLocationRelativeTo(null);
+        coinflip.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         coinflip.add(name);
         coinflip.add(game1);
         coinflip.add(game2);
