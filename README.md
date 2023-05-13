@@ -25,9 +25,9 @@ Bagulbagul
 - [X] Fully Working Registration (with SQL)
 - [ ] Purchase Screen
 - **Fix Layout and allow Resizing**
-- [ ] Terms and Conditions
-- [ ] Login
-- [ ] Registration
+- [X] Terms and Conditions
+- [ ] Login (Resizing was now possible but the layout is still a mess)
+- [ ] Registration (Same as Login)
 - [ ] Game Selector
 - **Games**
 - [ ] Sabong
