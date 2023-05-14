@@ -14,6 +14,7 @@ import javax.swing.Timer;
 public class GameSelector {
     AccountInformation accInf = new AccountInformation();
     DebugMenu dbgMenu = new DebugMenu();
+    Purchase buyCash = new Purchase();
     public void Game1() {
         //Loading Screen
         JFrame loading = new JFrame();
@@ -76,6 +77,11 @@ public class GameSelector {
 
         JButton purchase = new JButton("+");
         purchase.setBounds(635, 69, 25, 24);
+        purchase.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent p) {
+                buyCash.purchaseScreen();
+            }
+        });
         
         coinflip.setSize(698, 458);
         coinflip.setMinimumSize(new Dimension(698, 458));
