@@ -1,16 +1,18 @@
-import java.awt.Dimension;
+/*  Game 1 = Pula Puti
+    Game 2 = Tao-Ibon Coin Flip
+    Game 3 = Sabong
+    Game 4 = Slot Machine 
+*/
+
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.SwingUtilities;
-import javax.swing.Timer;
+import javax.swing.*;
+
+import net.miginfocom.swing.MigLayout;
 
 public class GameSelector {
     AccountInformation accInf = new AccountInformation();
@@ -50,19 +52,25 @@ public class GameSelector {
         Image img33 = img3.getImage();
         Image newimg3 = img33.getScaledInstance(156, 186, java.awt.Image.SCALE_SMOOTH);
 
+        ImageIcon img4 = new ImageIcon("src/icons/slotmachine.png");
+        Image img44 = img4.getImage();
+        Image newimg4 = img44.getScaledInstance(156, 186, java.awt.Image.SCALE_SMOOTH);
+
         JButton game1 = new JButton(new ImageIcon(newimg2));
         JButton game2 = new JButton(new ImageIcon(newimg1));
         JButton game3 = new JButton(new ImageIcon(newimg3));
+        JButton game4 = new JButton(new ImageIcon(newimg4));
 
 
-        game1.setBounds(69, 154, 156, 186);
+
+        // game1.setBounds(69, 154, 156, 186);
         game1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dbgMenu.debugMenu();
             }
         });
 
-        game2.setBounds(261, 154, 156, 186);
+        // game2.setBounds(261, 154, 156, 186);
         game2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent g2) {
                 RPSTutorial rpst = new RPSTutorial();
@@ -76,12 +84,12 @@ public class GameSelector {
         });
 
 
-        game3.setBounds(453, 154, 156, 186);
+        // game3.setBounds(453, 154, 156, 186);
         game3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent g3) {
                 SMTutorial smt = new SMTutorial();
-                coinflip.dispose();
                 try {
+                    coinflip.dispose();
                     smt.sm();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
@@ -90,7 +98,7 @@ public class GameSelector {
         });
 
         JLabel money = new JLabel("₱ "+String.valueOf(accInf.getCash())+".00");
-        money.setBounds(498, 69, 162, 24);
+        // money.setBounds(498, 69, 162, 24);
         money.setFont(new Font("Serif", Font.BOLD, 20));
         
         Timer timer = new Timer(1000, e -> {
@@ -100,25 +108,35 @@ public class GameSelector {
         timer.start();
 
         JButton purchase = new JButton("+");
-        purchase.setBounds(635, 69, 25, 24);
+        // purchase.setBounds(635, 69, 25, 24);
         purchase.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent p) {
                 buyCash.purchaseScreen();
             }
         });
+
+        JButton debug = new JButton("Debug");
+        debug.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent debug) {
+                dbgMenu.debugMenu();
+            }
+        });
         
         coinflip.setSize(698, 458);
-        coinflip.setMinimumSize(new Dimension(698, 458));
-        coinflip.setLayout(null);
+        // coinflip.setMinimumSize(new Dimension(698, 458));
+        coinflip.setLayout(new MigLayout("fill"));
         coinflip.setLocationRelativeTo(null);
         coinflip.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        coinflip.add(name);
-        coinflip.add(game1);
-        coinflip.add(game2);
-        coinflip.add(game3);
-        coinflip.add(money);
-        coinflip.add(purchase);
+        coinflip.add(money, "cell 0 0, gapbefore push");
+        coinflip.add(purchase, "cell 0 0");
+        coinflip.add(name, "cell 0 1, span 2, center, wrap");
+        coinflip.add(game1, "cell 0 2, center, width 156!, height 186!, gapleft 20, gapright 20");
+        coinflip.add(game2, "cell 0 2, center, width 156!, height 186!, gapright 20");
+        coinflip.add(game3, "cell 0 2, center, width 156!, height 186!, gapright 20");
+        coinflip.add(game4, "cell 0 2, center, width 156!, height 186!, gapright 20");
+        coinflip.add(debug, "cell 0 3, center");
         loading.dispose();
+        coinflip.pack();
         coinflip.setVisible(true);
     }
 }

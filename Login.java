@@ -86,8 +86,16 @@ public class Login {
         JButton debugButton = new JButton("Debug Login");
         debugButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent d) {
+                String[] options = { "Login using Debug Account", "Dont login and just go to GameSelector (not recommended)"};
+                int selection = JOptionPane.showOptionDialog(null, "What type of Debug Login?", null, 0, 2, null, options, options[0]);
                 soundManager.playButton();
-                debugLogin();
+
+                if (selection == 0) {  
+                    debugLogin();
+                } else {
+                    lgnFrame.dispose();
+                    gameSelector.Game1();
+                }
             }
         });
 

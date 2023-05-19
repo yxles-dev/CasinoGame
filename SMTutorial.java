@@ -43,7 +43,7 @@ public class SMTutorial {
             }
         });
 
-        String ToContent = readText.getText("src/tutorial/rps.txt");
+        String ToContent = readText.getText("src/tutorial/sm.txt");
         JTextArea Tutorial = new JTextArea(ToContent);
 
 
