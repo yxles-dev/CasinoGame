@@ -77,6 +77,17 @@ public class GameSelector {
 
 
         game3.setBounds(453, 154, 156, 186);
+        game3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent g3) {
+                SMTutorial smt = new SMTutorial();
+                coinflip.dispose();
+                try {
+                    smt.sm();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         JLabel money = new JLabel("₱ "+String.valueOf(accInf.getCash())+".00");
         money.setBounds(498, 69, 162, 24);
