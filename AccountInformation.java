@@ -65,11 +65,12 @@ public class AccountInformation {
                 AccountInformation.fName = resultSet.getString("u_fname");
                 AccountInformation.lName = resultSet.getString("u_lname");
                 AccountInformation.Cash = resultSet.getInt("u_cash");
-                System.out.println("Collected Information");
+                /* System.out.println("Collected Information");
                 System.out.println("First Name: "+fName);
                 System.out.println("Last Name: "+lName);
                 System.out.println("Username: "+uName);
                 System.out.println("Cash: "+Cash);
+                */ // For Debug Purposes only
             } else {
                 System.out.println("No record found for ID " + uID);
             }

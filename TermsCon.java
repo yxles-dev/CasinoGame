@@ -31,8 +31,7 @@ public class TermsCon {
         // checkBox.setBounds(135, 256, 229, 12);
 
         // Show terms.txt to TaC
-        readText.setText("src/terms.txt");
-        JTextArea TaC = new JTextArea(readText.getText());
+        JTextArea TaC = new JTextArea(readText.getText("src/terms.txt"));
         
 
         // Frame initialization
@@ -66,7 +65,6 @@ public class TermsCon {
         
 
         // scroll.setBounds(60, 48, 379, 168);
-        scroll.setSize(379, 168);
         TaC.setEditable(false);
         TaC.setLineWrap(true);
         TaC.setWrapStyleWord(true);
@@ -85,7 +83,7 @@ public class TermsCon {
         frame1.setLocationRelativeTo(null);
         frame1.setVisible(true);
         frame1.add(text, "span 2, center, wrap");
-        frame1.add(scroll, "cell 0 1, center, width 379!, height 168!, wrap");
+        frame1.add(scroll, "cell 0 1, center, grow, gapleft 20, gapright 20, wrap");
         frame1.add(checkBox, "cell 0 2, center");
         frame1.add(accept, "cell 0 3, center, gapright 60, width 84!, height 36!");
         frame1.add(deny, "cell 0 3, center, width 84!, height 36!");

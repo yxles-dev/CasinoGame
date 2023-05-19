@@ -3,6 +3,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -33,7 +34,6 @@ public class GameSelector {
         JFrame coinflip = new JFrame();
         JLabel name = new JLabel("Select a Game");
 
-        name.setBounds(256,105,165,29);
         name.setFont(new Font(null, Font.PLAIN, 24));
 
         accInf.setAccInf();
@@ -63,6 +63,19 @@ public class GameSelector {
         });
 
         game2.setBounds(261, 154, 156, 186);
+        game2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent g2) {
+                RPSTutorial rpst = new RPSTutorial();
+                try {
+                    coinflip.dispose();
+                    rpst.rps();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
         game3.setBounds(453, 154, 156, 186);
 
         JLabel money = new JLabel("₱ "+String.valueOf(accInf.getCash())+".00");
