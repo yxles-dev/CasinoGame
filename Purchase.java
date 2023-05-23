@@ -1,34 +1,61 @@
-import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import net.miginfocom.swing.MigLayout;
 
-public class Purchase extends JFrame {
-    public Purchase() {
-        // Set the layout manager to MigLayout
-        setLayout(new MigLayout());
+public class Purchase extends JFrame{
+    AccountInformation accInf = new AccountInformation();
+    public void purchaseScreen() {
+        JLabel text = new JLabel("Purchase Cash");
+        setLayout(new MigLayout("fill"));
+        setLocationRelativeTo(null);
+        JButton buy50 = new JButton("Buy ₱50.00");
+        buy50.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent b50) {
+                AccountInformation.Cash = AccountInformation.Cash + 50;
+                accInf.updateCash();
+                JOptionPane.showMessageDialog(null,"Bought Successful");
+            }
+        });
 
-        // Create the components
-        JLabel label1 = new JLabel("First Name:");
-        JLabel label2 = new JLabel("Last Name:");
-        JTextField textField1 = new JTextField(20);
-        JTextField textField2 = new JTextField(20);
-        JButton button = new JButton("Submit");
+        JButton buy100 = new JButton("Buy ₱100.00");
+        buy100.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent b100) {
+                AccountInformation.Cash = AccountInformation.Cash + 100;
+                accInf.updateCash();
+                JOptionPane.showMessageDialog(null,"Bought Successful");
+            }
+        });
 
-        // Add the components to the container with constraints
-        add(label1, "cell 0 0"); // cell 0,0 (row 0, column 0)
-        add(textField1, "cell 1 0"); // cell 1,0 (row 0, column 1)
-        add(label2, "cell 0 1"); // cell 0,1 (row 1, column 0)
-        add(textField2, "cell 1 1"); // cell 1,1 (row 1, column 1)
-        add(button, "cell 0 2, span 2"); // cell 0,2 (row 2, column 0), span 2 columns
+        JButton buy200 = new JButton("Buy ₱200.00");
+        buy200.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent b200) {
+                AccountInformation.Cash = AccountInformation.Cash + 200;
+                accInf.updateCash();
+                JOptionPane.showMessageDialog(null,"Bought Successful");
+            }
+        });
+        JButton buy500 = new JButton("Buy ₱500.00");
+        buy500.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent b500) {
+                AccountInformation.Cash = AccountInformation.Cash + 500;
+                accInf.updateCash();
+                JOptionPane.showMessageDialog(null,"Bought Successful");
+            }
+        });
 
-        // Set the window properties
-        setTitle("MigLayout Example");
-        setSize(400, 200);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        add(text, "span 2, center, wrap");
+        add(buy50, "cell 0 1");
+        add(buy100, "cell 0 1");
+        add(buy200, "cell 0 2");
+        add(buy500, "cell 0 2");
+        pack();
         setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        // Create an instance of the JFrame
-        new Purchase();
     }
 }

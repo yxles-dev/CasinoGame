@@ -5,7 +5,9 @@ public class TextReader {
     private String text;
 
     // Getter
-    public String getText() throws FileNotFoundException {
+    public String getText(String fileLocation) throws FileNotFoundException {
+
+        this.location = fileLocation;
         FileReader reader = new FileReader(location);
         BufferedReader br = new BufferedReader(reader);
         String line;
@@ -27,10 +29,5 @@ public class TextReader {
         
         text = sb.toString();
         return text;
-    }
-
-    // Setter
-    public void setText(String fileLocation) {
-        this.location = fileLocation;
     }
 }
