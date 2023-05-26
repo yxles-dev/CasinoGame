@@ -7,10 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 
-public class RPSTutorial {
+public class TCTutorial {
     TextReader readText = new TextReader();
     GameSelector gs = new GameSelector();
-    public void rps() throws FileNotFoundException {
+    public void tc() throws FileNotFoundException {
 
         JFrame game = new JFrame();
         game.setLayout(new MigLayout("fill"));
@@ -43,7 +43,7 @@ public class RPSTutorial {
             }
         });
 
-        String ToContent = readText.getText("src/tutorial/rps.txt");
+        String ToContent = readText.getText("src/tutorial/tc.txt");
         JTextArea Tutorial = new JTextArea(ToContent);
 
 
@@ -54,7 +54,7 @@ public class RPSTutorial {
         Tutorial.setLineWrap(true);
         Tutorial.setWrapStyleWord(true);
 
-        game.setTitle("Rock Paper Scissor");
+        game.setTitle("Coin Flip");
         game.setMinimumSize(new Dimension(592, 366));
         game.setVisible(true);
         game.setLocationRelativeTo(null);
