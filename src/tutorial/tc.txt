@@ -1,0 +1,9 @@
+Welcome to Coinflip or Tao-ibon, it is a practice of throwing a coin in the air and checking which side is showing when it lands in heads or tails.
+
+Here are some rules and ways to play the coin toss game:
+
+- To flip a coin for an effect, the game will flip the coin and calls "heads" or "tails."
+
+- The player will choose if he/she wants "heads" or "tails."
+
+- If the call matches the result, the player wins the flip. Otherwise, the player loses the flip.

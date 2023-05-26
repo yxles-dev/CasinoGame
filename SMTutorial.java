@@ -9,11 +9,11 @@ import java.io.FileNotFoundException;
 
 public class SMTutorial {
     TextReader readText = new TextReader();
+    GameSelector gs = new GameSelector();
     public void sm() throws FileNotFoundException {
 
         JFrame game = new JFrame();
         game.setLayout(new MigLayout("fill"));
-        GameSelector gameSelector = new GameSelector();
 
         JLabel text = new JLabel("Tutorial");
         text.setFont(new Font(null, Font.PLAIN, 25));
@@ -26,7 +26,7 @@ public class SMTutorial {
 
         backb.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                gameSelector.Game1();
+                gs.enableGS();
                 game.dispose();
             }
         });
@@ -54,7 +54,7 @@ public class SMTutorial {
         Tutorial.setLineWrap(true);
         Tutorial.setWrapStyleWord(true);
 
-        game.setTitle("Rock Paper Scissor");
+        game.setTitle("Slot Machine");
         game.setMinimumSize(new Dimension(592, 366));
         game.setVisible(true);
         game.setLocationRelativeTo(null);

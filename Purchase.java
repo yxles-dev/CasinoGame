@@ -49,7 +49,7 @@ public class Purchase extends JFrame{
             }
         });
 
-
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         add(text, "span 2, center, wrap");
         add(buy50, "cell 0 1");
         add(buy100, "cell 0 1");
