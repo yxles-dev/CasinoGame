@@ -2,6 +2,7 @@ import javax.swing.*;
 
 import net.miginfocom.swing.MigLayout;
 
+import games.RPS;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +12,7 @@ public class RPSTutorial {
     TextReader readText = new TextReader();
     GameSelector gs = new GameSelector();
     public void rps() throws FileNotFoundException {
+        RPS rps = new RPS();
 
         JFrame game = new JFrame();
         game.setLayout(new MigLayout("fill"));
@@ -40,6 +42,7 @@ public class RPSTutorial {
         play.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.dispose();
+                rps.rpsGame();
             }
         });
 

@@ -1,16 +1,18 @@
 package games;
 
-import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+import net.miginfocom.swing.MigLayout;
 
 public class RPS extends JFrame implements ActionListener {
     private JButton rockButton, paperButton, scissorsButton;
     private JLabel resultLabel;
     private int userScore, computerScore;
 
-    public RPS() {
-        super("Rock Paper Scissors");
+    public void rpsGame() {
+        setLayout(new MigLayout("fill"));
+        setLocationRelativeTo(null);
 
         // Create buttons
         rockButton = new JButton("Rock");
@@ -26,16 +28,15 @@ public class RPS extends JFrame implements ActionListener {
         resultLabel = new JLabel("Choose your move!");
 
         // Add components to content pane
-        Container c = getContentPane();
-        c.setLayout(new GridLayout(4, 1));
-        c.add(rockButton);
-        c.add(paperButton);
-        c.add(scissorsButton);
-        c.add(resultLabel);
+        add(rockButton, "cell 0 0");
+        add(paperButton, "cell 0 0");
+        add(scissorsButton, "cell 0 0");
+        add(resultLabel, "cell 0 1, center");
 
         // Set window properties
         setSize(300, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        pack();
         setVisible(true);
     }
 
@@ -77,9 +78,5 @@ public class RPS extends JFrame implements ActionListener {
         } else {
             return "Computer wins!";
         }
-    }
-
-    public static void main(String[] args) {
-        new RPS();
     }
 }

@@ -21,6 +21,7 @@ public class CasinoMain extends JFrame {
     public void paint(Graphics g)
     {
         Image img = Toolkit.getDefaultToolkit().getImage("src/icons/Intro.png");
+        // Image img = Toolkit.getDefaultToolkit().getImage("src/loginbackground.png");
 
         g.drawImage(img, 0, 0, this);
     }

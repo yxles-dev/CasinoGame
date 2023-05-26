@@ -57,7 +57,7 @@ public class GameSelector {
         Image img44 = img4.getImage();
         Image newimg4 = img44.getScaledInstance(156, 186, java.awt.Image.SCALE_SMOOTH);
 
-        JButton game1 = new JButton("Debug"); // Remove 
+        // JButton game1 = new JButton("Debug"); // Remove 
         JButton game2 = new JButton(new ImageIcon(newimg1)); // Tao-Ibon
         JButton game3 = new JButton("Rock Paper Scissor"); // Rock Paper Scissor
         JButton game4 = new JButton(new ImageIcon(newimg4)); // Slot Machine
@@ -65,11 +65,11 @@ public class GameSelector {
 
 
         // game1.setBounds(69, 154, 156, 186);
-        game1.addActionListener(new ActionListener() {
+        /*game1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dbgMenu.debugMenu();
             }
-        });
+        }); */
 
         game2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent g2) {
@@ -132,21 +132,22 @@ public class GameSelector {
             }
         });
         
+        
         coinflip.setSize(698, 458);
-        // coinflip.setMinimumSize(new Dimension(698, 458));
         coinflip.setLayout(new MigLayout("fill"));
         coinflip.setLocationRelativeTo(null);
         coinflip.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         coinflip.add(money, "cell 0 0, gapbefore push");
         coinflip.add(purchase, "cell 0 0");
         coinflip.add(name, "cell 0 1, span 2, center, wrap");
-        coinflip.add(game1, "cell 0 2, center, width 156!, height 186!, gapleft 20, gapright 20");
-        coinflip.add(game2, "cell 0 2, center, width 156!, height 186!, gapright 20");
+        // coinflip.add(game1, "cell 0 2, center, width 156!, height 186!, gapleft 20, gapright 20");
+        coinflip.add(game2, "cell 0 2, center, width 156!, height 186!, gapleft 20, gapright 20");
         coinflip.add(game3, "cell 0 2, center, width 156!, height 186!, gapright 20");
         coinflip.add(game4, "cell 0 2, center, width 156!, height 186!, gapright 20");
         coinflip.add(debug, "cell 0 3, center");
         loading.dispose();
         coinflip.pack();
+        // coinflip.setMinimumSize(new Dimension(698, 458));
         coinflip.setVisible(true);
     }
 

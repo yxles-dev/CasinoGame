@@ -12,9 +12,7 @@ public class SlotMachine extends JFrame implements ActionListener {
     private int credits = 100;
     private int bet = 1;
 
-    public SlotMachine() {
-        super("Slot Machine");
-
+    public void smGame() {
         // Create the reels
         reels = new JLabel[3];
         for (int i = 0; i < 3; i++) {

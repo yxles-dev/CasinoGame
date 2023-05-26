@@ -17,6 +17,13 @@ public class Login {
     SoundManager soundManager = new SoundManager();
     public static String userName;
 
+    public void paint(Graphics g)
+    {
+        Image img = Toolkit.getDefaultToolkit().getImage("src/loginbackground.png");
+
+        g.drawImage(img, 0, 0, null);
+    }
+
     public void loginScreen() throws FileNotFoundException {
         lgnFrame.setLayout(new MigLayout("fill"));
         System.out.println("Launching Login Screen"); // Debug
@@ -99,8 +106,9 @@ public class Login {
             }
         });
 
-        // lgnFrame.setSize(520, 366);
+        lgnFrame.setSize(520, 366);
         lgnFrame.setMinimumSize(new Dimension(520, 366));
+
         lgnFrame.setLocationRelativeTo(null);
         lgnFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         lgnFrame.add(text, "dock north, gapleft 40, gaptop 30");

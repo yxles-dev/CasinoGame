@@ -1,7 +1,7 @@
 import javax.swing.*;
 
 import net.miginfocom.swing.MigLayout;
-
+import games.CoinFlip;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 public class TCTutorial {
     TextReader readText = new TextReader();
     GameSelector gs = new GameSelector();
+    CoinFlip cf = new CoinFlip();
     public void tc() throws FileNotFoundException {
 
         JFrame game = new JFrame();
@@ -40,6 +41,7 @@ public class TCTutorial {
         play.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.dispose();
+                cf.cfGame();
             }
         });
 

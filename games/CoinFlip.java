@@ -7,7 +7,7 @@ public class CoinFlip extends JFrame implements ActionListener {
   private JButton flipButton;
   private JLabel coinLabel;
 
-  public CoinFlip() {
+  public void cfGame() {
     setTitle("Coin Flip");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setSize(300, 300);
@@ -21,6 +21,7 @@ public class CoinFlip extends JFrame implements ActionListener {
 
     add(flipButton, BorderLayout.NORTH);
     add(coinLabel, BorderLayout.CENTER);
+    setVisible(true);
   }
 
   public void actionPerformed(ActionEvent e) {
@@ -30,10 +31,5 @@ public class CoinFlip extends JFrame implements ActionListener {
     } else {
       coinLabel.setText("Tails");
     }
-  }
-
-  public static void main(String[] args) {
-    CoinFlip gui = new CoinFlip();
-    gui.setVisible(true);
   }
 }

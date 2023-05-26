@@ -1,5 +1,6 @@
 import javax.swing.*;
 
+import games.SlotMachine;
 import net.miginfocom.swing.MigLayout;
 
 import java.awt.*;
@@ -10,6 +11,7 @@ import java.io.FileNotFoundException;
 public class SMTutorial {
     TextReader readText = new TextReader();
     GameSelector gs = new GameSelector();
+    SlotMachine smg = new SlotMachine();
     public void sm() throws FileNotFoundException {
 
         JFrame game = new JFrame();
@@ -40,6 +42,7 @@ public class SMTutorial {
         play.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.dispose();
+                smg.smGame();
             }
         });
 
