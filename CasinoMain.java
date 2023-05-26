@@ -27,8 +27,10 @@ public class CasinoMain extends JFrame {
     }
     public static void main (String[] args) throws FileNotFoundException, InterruptedException{
         Login login = new Login();
+        ImproveLogin ipl = new ImproveLogin();
         CasinoMain bim = new CasinoMain();
         bim.BackgroundImageJFrame();
-        login.loginScreen();
+        ipl.loginPage();
+        // login.loginScreen();
     }
 }
