@@ -1,18 +1,17 @@
 import javax.swing.*;
 
-import games.SlotMachine;
 import net.miginfocom.swing.MigLayout;
-
+import games.CoinFlip;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 
-public class SMTutorial {
+public class TCTutorial {
     TextReader readText = new TextReader();
     GameSelector gs = new GameSelector();
-    SlotMachine smg = new SlotMachine();
-    public void sm() throws FileNotFoundException {
+    CoinFlip cf = new CoinFlip();
+    public void tc() throws FileNotFoundException {
 
         JFrame game = new JFrame();
         game.setLayout(new MigLayout("fill"));
@@ -42,11 +41,11 @@ public class SMTutorial {
         play.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.dispose();
-                smg.smGame();
+                cf.cfGame();
             }
         });
 
-        String ToContent = readText.getText("src/tutorial/sm.txt");
+        String ToContent = readText.getText("src/tutorial/tc.txt");
         JTextArea Tutorial = new JTextArea(ToContent);
 
 
@@ -57,7 +56,7 @@ public class SMTutorial {
         Tutorial.setLineWrap(true);
         Tutorial.setWrapStyleWord(true);
 
-        game.setTitle("Slot Machine");
+        game.setTitle("Coin Flip");
         game.setMinimumSize(new Dimension(592, 366));
         game.setVisible(true);
         game.setLocationRelativeTo(null);
