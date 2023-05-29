@@ -1,5 +1,8 @@
-import tools.WindowLocation;
+package com.dabest;
+
 import javax.swing.JFrame;
+
+import com.dabest.tools.WindowLocation;
 
 import java.awt.*;
 import java.io.FileNotFoundException;
@@ -13,7 +16,6 @@ public class CasinoMain extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
 
-        AccountInformation accInf = new AccountInformation();
         WindowLocation wl = new WindowLocation();
         wl.setLocation(getLocation());
 

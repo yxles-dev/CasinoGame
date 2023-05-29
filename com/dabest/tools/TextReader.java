@@ -1,4 +1,4 @@
-package tools;
+package com.dabest.tools;
 import java.io.*;
 
 public class TextReader {

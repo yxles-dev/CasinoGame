@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CasinoMain",
+            "request": "launch",
+            "mainClass": "com.dabest.CasinoMain",
+            "projectName": "CasinoGame_89174e72"
+        },
+        {
+            "type": "java",
             "name": "ExampleMain",
             "request": "launch",
             "mainClass": "testcodes.ExampleMain",

@@ -1,9 +1,12 @@
+package com.dabest;
 import javax.swing.*;
 
+import com.dabest.games.RPS;
+import com.dabest.tools.TextReader;
+import com.dabest.tools.WindowClosedCallback;
+
 import net.miginfocom.swing.MigLayout;
-import tools.TextReader;
-import tools.WindowClosedCallback;
-import games.RPS;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

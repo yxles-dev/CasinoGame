@@ -1,4 +1,4 @@
-package games;
+package com.dabest.games;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;

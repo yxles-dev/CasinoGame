@@ -1,9 +1,11 @@
+package com.dabest;
 import javax.swing.*;
 
-import games.SlotMachine;
+import com.dabest.games.SlotMachine;
+import com.dabest.tools.TextReader;
+import com.dabest.tools.WindowClosedCallback;
+
 import net.miginfocom.swing.MigLayout;
-import tools.TextReader;
-import tools.WindowClosedCallback;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -55,6 +57,11 @@ public class SMTutorial {
 
         play.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                // Dispose GameSelector
+                GameSelector gsl = new GameSelector();
+                JFrame gameSelector = gsl.getFrame();
+                callback.onWindowClosed();
+                gameSelector.dispose();
                 game.dispose();
                 smg.smGame();
             }

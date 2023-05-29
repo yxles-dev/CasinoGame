@@ -1,3 +1,4 @@
+package com.dabest;
 /* CasinoGame (Group 1)
  * Members: Soria
  *          Ouano
@@ -11,10 +12,11 @@
 import java.io.FileNotFoundException;
 import javax.swing.*;
 
+import com.dabest.tools.TextReader;
+
 import java.awt.*;
 import java.awt.event.*;
 import net.miginfocom.swing.MigLayout;
-import tools.TextReader;
 
 public class TermsCon {
 

@@ -1,3 +1,4 @@
+package com.dabest;
 /*  Game 1 = Pula Puti
     Game 2 = Tao-Ibon Coin Flip
     Game 3 = Sabong
@@ -11,7 +12,8 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 
 import javax.swing.*;
-import tools.WindowClosedCallback;
+
+import com.dabest.tools.WindowClosedCallback;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -148,6 +150,10 @@ public class GameSelector {
         coinflip.pack();
         // coinflip.setMinimumSize(new Dimension(698, 458));
         coinflip.setVisible(true);
+    }
+
+    public JFrame getFrame() {
+        return coinflip;
     }
 
     public void enableGS() {
