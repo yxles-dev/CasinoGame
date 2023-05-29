@@ -32,6 +32,4 @@ Bagulbagul
 - **Games**
 - [X] Sabong
 - [X] Rock Paper Scissor
-- [ ] P̶u̶l̶a̶-̶P̶u̶t̶i̶
-- [ ] S̶l̶o̶t̶ M̶a̶c̶h̶i̶n̶e̶
 - [X] Tao-Ibon (Coin Flip)

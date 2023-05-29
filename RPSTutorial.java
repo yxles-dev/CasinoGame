@@ -1,21 +1,36 @@
 import javax.swing.*;
 
 import net.miginfocom.swing.MigLayout;
-
+import tools.TextReader;
+import tools.WindowClosedCallback;
 import games.RPS;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 
 public class RPSTutorial {
     TextReader readText = new TextReader();
     GameSelector gs = new GameSelector();
+    private WindowClosedCallback callback;
+
+    public RPSTutorial(WindowClosedCallback callback) {
+        this.callback = callback;
+    }
+    
     public void rps() throws FileNotFoundException {
         RPS rps = new RPS();
 
         JFrame game = new JFrame();
         game.setLayout(new MigLayout("fill"));
+
+        game.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                callback.onWindowClosed();  // Invoke the callback when the JFrame is closed
+            }
+        });
 
         JLabel text = new JLabel("Tutorial");
         text.setFont(new Font(null, Font.PLAIN, 25));
@@ -30,6 +45,7 @@ public class RPSTutorial {
             public void actionPerformed(ActionEvent e) {
                 gs.enableGS();
                 game.dispose();
+                callback.onWindowClosed();
             }
         });
 

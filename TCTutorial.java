@@ -1,20 +1,33 @@
 import javax.swing.*;
 
 import net.miginfocom.swing.MigLayout;
+import tools.TextReader;
+import tools.WindowClosedCallback;
 import games.CoinFlip;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.io.FileNotFoundException;
 
 public class TCTutorial {
     TextReader readText = new TextReader();
     GameSelector gs = new GameSelector();
     CoinFlip cf = new CoinFlip();
+    private WindowClosedCallback callback;
+
+    public TCTutorial(WindowClosedCallback callback) {
+        this.callback = callback;
+    }
+
     public void tc() throws FileNotFoundException {
 
         JFrame game = new JFrame();
         game.setLayout(new MigLayout("fill"));
+
+        game.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                callback.onWindowClosed();  // Invoke the callback when the JFrame is closed
+            }
+        });
 
         JLabel text = new JLabel("Tutorial");
         text.setFont(new Font(null, Font.PLAIN, 25));
@@ -29,6 +42,7 @@ public class TCTutorial {
             public void actionPerformed(ActionEvent e) {
                 gs.enableGS();
                 game.dispose();
+                callback.onWindowClosed();
             }
         });
 

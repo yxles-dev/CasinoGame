@@ -1,4 +1,4 @@
-
+import tools.WindowLocation;
 import javax.swing.JFrame;
 
 import java.awt.*;
@@ -10,13 +10,12 @@ public class CasinoMain extends JFrame {
         this.setUndecorated(true);
         setTitle("DigiBet ICT201");
         setSize(899,421);
-        setLocation(0, 0);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
         setVisible(true);
 
         AccountInformation accInf = new AccountInformation();
-        // accInf.setwindowLocation(getLocation());
-        // System.out.println(accInf.getwindowLocation());
+        WindowLocation wl = new WindowLocation();
+        wl.setLocation(getLocation());
 
         Thread.sleep(3000);
         this.dispose();
@@ -30,11 +29,11 @@ public class CasinoMain extends JFrame {
         g.drawImage(img, 0, 0, this);
     }
     public static void main (String[] args) throws FileNotFoundException, InterruptedException{
-        Login login = new Login();
-        // ImproveLogin ipl = new ImproveLogin();
+        Login login = new Login(); // Old Login Page
+        // ImproveLogin ipl = new ImproveLogin(); // New Login Page
         CasinoMain bim = new CasinoMain();
         bim.BackgroundImageJFrame();
-        // ipl.loginPage();
-        login.loginScreen();
+        // ipl.loginPage(); // New Login Page
+        login.loginScreen(); // Old Login Page
     }
 }

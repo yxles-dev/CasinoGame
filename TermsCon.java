@@ -14,6 +14,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import net.miginfocom.swing.MigLayout;
+import tools.TextReader;
 
 public class TermsCon {
 

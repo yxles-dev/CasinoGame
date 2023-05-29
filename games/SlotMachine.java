@@ -4,10 +4,20 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import net.miginfocom.swing.MigLayout;
+
 public class SlotMachine extends JFrame implements ActionListener {
     private JButton spinButton;
     private JLabel[] reels;
-    private String[] symbols = {"Cherry", "Lemon", "Orange", "Plum", "Bell", "Bar", "Seven"};
+    private ImageIcon[] symbols = {
+        new ImageIcon("src/icons/SlotMachine/Cherry.png"),
+        new ImageIcon("src/icons/SlotMachine/Lemon.png"), 
+        new ImageIcon("src/icons/SlotMachine/Orange.png"), 
+        new ImageIcon("src/icons/SlotMachine/Plum.png"), 
+        new ImageIcon("src/icons/SlotMachine/Bell.png"), 
+        new ImageIcon("src/icons/SlotMachine/Bar.png"), 
+        new ImageIcon("src/icons/SlotMachine/Lucky7.png")
+    };
     private int[] payouts = {2, 3, 4, 5, 10, 20, 50};
     private int credits = 100;
     private int bet = 1;
@@ -17,7 +27,6 @@ public class SlotMachine extends JFrame implements ActionListener {
         reels = new JLabel[3];
         for (int i = 0; i < 3; i++) {
             reels[i] = new JLabel(symbols[0], JLabel.CENTER);
-            reels[i].setFont(new Font("SansSerif", Font.BOLD, 24));
             reels[i].setOpaque(true);
             reels[i].setBackground(Color.white);
             reels[i].setPreferredSize(new Dimension(100, 100));
@@ -29,13 +38,13 @@ public class SlotMachine extends JFrame implements ActionListener {
 
         // Add the components to the content pane
         Container c = getContentPane();
-        c.setLayout(new BorderLayout());
+        c.setLayout(new MigLayout("fill"));
         JPanel reelsPanel = new JPanel(new GridLayout(1, 3));
         for (int i = 0; i < 3; i++) {
             reelsPanel.add(reels[i]);
         }
-        c.add(reelsPanel, BorderLayout.CENTER);
-        c.add(spinButton, BorderLayout.SOUTH);
+        c.add(reelsPanel, "cell 0 0, center");
+        c.add(spinButton, "cell 0 1, center");
 
         // Set the size and show the frame
         setSize(400, 200);
@@ -46,7 +55,7 @@ public class SlotMachine extends JFrame implements ActionListener {
         // Spin the reels
         for (int i = 0; i < 3; i++) {
             int symbolIndex = (int) (Math.random() * symbols.length);
-            reels[i].setText(symbols[symbolIndex]);
+            reels[i].setIcon(symbols[symbolIndex]);
         }
 
         // Calculate the payout
@@ -64,9 +73,5 @@ public class SlotMachine extends JFrame implements ActionListener {
         if (credits < bet) {
             spinButton.setEnabled(false);
         }
-    }
-
-    public static void main(String[] args) {
-        new SlotMachine();
     }
 }

@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 
 import javax.swing.*;
+import tools.WindowClosedCallback;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -45,38 +46,44 @@ public class GameSelector {
         Image img11 = img1.getImage();
         Image newimg1 = img11.getScaledInstance(156, 186, java.awt.Image.SCALE_SMOOTH);
 
-        // ImageIcon img2 = new ImageIcon("src/icons/pulaputi.png");
-        // Image img22 = img2.getImage();
-        // Image newimg2 = img22.getScaledInstance(156, 186, java.awt.Image.SCALE_SMOOTH);
-
-        // ImageIcon img3 = new ImageIcon("src/icons/sabong.png");
-        // Image img33 = img3.getImage();
-        // Image newimg3 = img33.getScaledInstance(156, 186, java.awt.Image.SCALE_SMOOTH);
+        ImageIcon img2 = new ImageIcon("src/icons/rockscissorpaper.png");
+        Image img22 = img2.getImage();
+        Image newimg2 = img22.getScaledInstance(156, 186, java.awt.Image.SCALE_SMOOTH);
 
         ImageIcon img4 = new ImageIcon("src/icons/slotmachine.png");
         Image img44 = img4.getImage();
         Image newimg4 = img44.getScaledInstance(156, 186, java.awt.Image.SCALE_SMOOTH);
 
-        // JButton game1 = new JButton("Debug"); // Remove 
-        JButton game2 = new JButton(new ImageIcon(newimg1)); // Tao-Ibon
-        JButton game3 = new JButton("Rock Paper Scissor"); // Rock Paper Scissor
-        JButton game4 = new JButton(new ImageIcon(newimg4)); // Slot Machine
+        JButton game1 = new JButton(new ImageIcon(newimg1)); // Tao-Ibon
+        JButton game2 = new JButton(new ImageIcon(newimg2)); // Rock Paper Scissor
+        JButton game3 = new JButton(new ImageIcon(newimg4)); // Slot Machine
 
-
-
-        // game1.setBounds(69, 154, 156, 186);
-        /*game1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                dbgMenu.debugMenu();
-            }
-        }); */
-
-        game2.addActionListener(new ActionListener() {
+        game1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent g2) {
                 coinflip.setEnabled(false);
-                TCTutorial tct = new TCTutorial();
+                TCTutorial tct = new TCTutorial(new WindowClosedCallback() {
+                    public void onWindowClosed() {
+                        coinflip.setEnabled(true);  // Enable the button when the JFrame is closed
+                    }
+                });
                 try {
                     tct.tc();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        game2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent g3) {
+                coinflip.setEnabled(false);
+                RPSTutorial rpst = new RPSTutorial(new WindowClosedCallback() {
+                    public void onWindowClosed() {
+                        coinflip.setEnabled(true);  // Enable the button when the JFrame is closed
+                    }
+                });
+                try {
+                    rpst.rps();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -86,19 +93,11 @@ public class GameSelector {
         game3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent g3) {
                 coinflip.setEnabled(false);
-                RPSTutorial rpst = new RPSTutorial();
-                try {
-                    rpst.rps();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        game4.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent g3) {
-                coinflip.setEnabled(false);
-                SMTutorial smt = new SMTutorial();
+                SMTutorial smt = new SMTutorial(new WindowClosedCallback() {
+                    public void onWindowClosed() {
+                        coinflip.setEnabled(true);  // Enable the button when the JFrame is closed
+                    }
+                });
                 try {
                     smt.sm();
                 } catch (FileNotFoundException e) {
@@ -141,9 +140,9 @@ public class GameSelector {
         coinflip.add(purchase, "cell 0 0");
         coinflip.add(name, "cell 0 1, span 2, center, wrap");
         // coinflip.add(game1, "cell 0 2, center, width 156!, height 186!, gapleft 20, gapright 20");
-        coinflip.add(game2, "cell 0 2, center, width 156!, height 186!, gapleft 20, gapright 20");
+        coinflip.add(game1, "cell 0 2, center, width 156!, height 186!, gapleft 20, gapright 20");
+        coinflip.add(game2, "cell 0 2, center, width 156!, height 186!, gapright 20");
         coinflip.add(game3, "cell 0 2, center, width 156!, height 186!, gapright 20");
-        coinflip.add(game4, "cell 0 2, center, width 156!, height 186!, gapright 20");
         coinflip.add(debug, "cell 0 3, center");
         loading.dispose();
         coinflip.pack();
