@@ -10,9 +10,13 @@ public class CasinoMain extends JFrame {
         this.setUndecorated(true);
         setTitle("DigiBet ICT201");
         setSize(899,421);
-        setLocationRelativeTo(null);
+        setLocation(0, 0);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
+
+        AccountInformation accInf = new AccountInformation();
+        // accInf.setwindowLocation(getLocation());
+        // System.out.println(accInf.getwindowLocation());
 
         Thread.sleep(3000);
         this.dispose();
