@@ -23,14 +23,15 @@ Bagulbagul
 - [x] Splash Screen
 - [X] Fully Working Login Page (with SQL)
 - [X] Fully Working Registration (with SQL)
-- [ ] Purchase Screen
+- [X] Purchase Screen
 - **Fix Layout and allow Resizing**
 - [X] Terms and Conditions
 - [ ] Login (Resizing was now possible but the layout is still a mess)
 - [ ] Registration (Same as Login)
-- [ ] Game Selector
+- [X] Game Selector
 - **Games**
-- [ ] Sabong
-- [ ] Pula-Puti
-- [ ] Slot Machine
-- [ ] Tao-Ibon
+- [X] Sabong
+- [X] Rock Paper Scissor
+- [ ] P̶u̶l̶a̶-̶P̶u̶t̶i̶
+- [ ] S̶l̶o̶t̶ M̶a̶c̶h̶i̶n̶e̶
+- [X] Tao-Ibon (Coin Flip)
