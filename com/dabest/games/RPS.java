@@ -1,5 +1,6 @@
 package com.dabest.games;
 
+import java.awt.Image;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -14,13 +15,11 @@ public class RPS extends JFrame implements ActionListener {
         new ImageIcon("src/icons/RPS/P.png"), 
         new ImageIcon("src/icons/RPS/S.png")
     };
-    private JLabel[] resultImage;
+    private JLabel resultImage;
 
     public void rpsGame() {
         setLayout(new MigLayout("fill"));
         setLocationRelativeTo(null);
-
-        resultImage = new JLabel[1];
 
         // Create buttons
         rockButton = new JButton("Rock");
@@ -44,7 +43,7 @@ public class RPS extends JFrame implements ActionListener {
         add(paperButton, "cell 0 0");
         add(scissorsButton, "cell 0 0");
         add(resultLabel, "cell 0 1, center");
-        add(resultImage[0], "cell 0 2, center");
+        add(resultImage, "cell 0 2, center");
 
         // Set window properties
         setSize(592, 366);
@@ -60,8 +59,17 @@ public class RPS extends JFrame implements ActionListener {
         System.out.println(computerMove);
 
         // Update result label
+        Image img1 = symbols[0].getImage();
+        Image img2 = symbols[1].getImage();
+        Image img3 = symbols[2].getImage();
         resultLabel.setText("You chose " + userMove + ". Computer chose " + computerMove + ". " + result);
-        // resultImage.setIcon();
+        if (computerMove.contains("Rock")) {
+            resultImage.setIcon(new ImageIcon(img1));
+        } if (computerMove.contains("Paper")) {
+            resultImage.setIcon(new ImageIcon(img2));
+        } if (computerMove.contains("Scissor")) {
+            resultImage.setIcon(new ImageIcon(img3));
+        }
 
 
         // Update scores

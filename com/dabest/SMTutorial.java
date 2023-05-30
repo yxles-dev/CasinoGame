@@ -60,10 +60,9 @@ public class SMTutorial {
                 // Dispose GameSelector
                 WindowLocation wl = new WindowLocation();
                 wl.setLocation(game.getLocation());
-                // GameSelector gsl = new GameSelector();
-                // JFrame coinflip = gsl.getFrame();
-                // coinflip.dispose();
-                GameSelector.getFrame().dispose();
+                GameSelector gsl = new GameSelector();
+                JFrame coinflip = gsl.getFrame();
+                coinflip.dispose();
                 game.dispose();
                 smg.smGame();
             }
