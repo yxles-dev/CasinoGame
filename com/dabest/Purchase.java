@@ -9,12 +9,13 @@ import javax.swing.JOptionPane;
 
 import net.miginfocom.swing.MigLayout;
 
-public class Purchase extends JFrame{
+public class Purchase {
     AccountInformation accInf = new AccountInformation();
     public void purchaseScreen() {
+        JFrame purScreen = new JFrame();
         JLabel text = new JLabel("Purchase Cash");
-        setLayout(new MigLayout("fill"));
-        setLocationRelativeTo(null);
+        purScreen.setLayout(new MigLayout("fill"));
+        purScreen.setLocationRelativeTo(null);
         JButton buy50 = new JButton("Buy ₱50.00");
         buy50.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent b50) {
@@ -50,13 +51,14 @@ public class Purchase extends JFrame{
             }
         });
 
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        add(text, "span 2, center, wrap");
-        add(buy50, "cell 0 1");
-        add(buy100, "cell 0 1");
-        add(buy200, "cell 0 2");
-        add(buy500, "cell 0 2");
-        pack();
-        setVisible(true);
+        //setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        purScreen.add(text, "span 2, center, wrap");
+        purScreen.add(buy50, "cell 0 1");
+        purScreen.add(buy100, "cell 0 1");
+        purScreen.add(buy200, "cell 0 2");
+        purScreen.add(buy500, "cell 0 2");
+        purScreen.pack();     
+        purScreen.setVisible(true);
+        
     }
 }

@@ -9,10 +9,18 @@ public class RPS extends JFrame implements ActionListener {
     private JButton rockButton, paperButton, scissorsButton;
     private JLabel resultLabel;
     private int userScore, computerScore;
+    private ImageIcon[] symbols = {
+        new ImageIcon("src/icons/RPS/R.png"),
+        new ImageIcon("src/icons/RPS/P.png"), 
+        new ImageIcon("src/icons/RPS/S.png")
+    };
+    private JLabel[] resultImage;
 
     public void rpsGame() {
         setLayout(new MigLayout("fill"));
         setLocationRelativeTo(null);
+
+        resultImage = new JLabel[1];
 
         // Create buttons
         rockButton = new JButton("Rock");
@@ -27,14 +35,19 @@ public class RPS extends JFrame implements ActionListener {
         // Create result label
         resultLabel = new JLabel("Choose your move!");
 
+        // Add the resultImage to Content
+        // JPanel reelsPanel = new JPanel(new MigLayout("fill"));
+        // reelsPanel.add(resultImage)
+
         // Add components to content pane
         add(rockButton, "cell 0 0");
         add(paperButton, "cell 0 0");
         add(scissorsButton, "cell 0 0");
         add(resultLabel, "cell 0 1, center");
+        add(resultImage[0], "cell 0 2, center");
 
         // Set window properties
-        setSize(300, 200);
+        setSize(592, 366);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setVisible(true);
@@ -44,9 +57,12 @@ public class RPS extends JFrame implements ActionListener {
         String userMove = e.getActionCommand();
         String computerMove = getComputerMove();
         String result = getResult(userMove, computerMove);
+        System.out.println(computerMove);
 
         // Update result label
         resultLabel.setText("You chose " + userMove + ". Computer chose " + computerMove + ". " + result);
+        // resultImage.setIcon();
+
 
         // Update scores
         if (result.equals("You win!")) {

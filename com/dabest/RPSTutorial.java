@@ -46,7 +46,6 @@ public class RPSTutorial {
 
         backb.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                gs.enableGS();
                 game.dispose();
                 callback.onWindowClosed();
             }

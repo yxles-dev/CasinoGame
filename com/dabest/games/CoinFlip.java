@@ -8,28 +8,55 @@ public class CoinFlip extends JFrame implements ActionListener {
   private JLabel coinLabel;
 
   public void cfGame() {
-    setTitle("Coin Flip");
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setSize(300, 300);
-    setLayout(new BorderLayout());
 
-    flipButton = new JButton("Flip");
-    flipButton.addActionListener(this);
+    JFrame cf = new JFrame("Digibet");
+    JButton backb = new JButton("Go Back");
+
+      ImageIcon Heads = new ImageIcon("src/icons/");
+      Image one = Heads.getImage();
+
+      ImageIcon Tails = new ImageIcon("src/icons/");
+      Image two = Tails.getImage();
+
+        backb.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cf.dispose();
+                //callback.onWindowClosed();
+            }
+        });
+
+
+        JButton play = new JButton("Play");
+
+        play.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cf.dispose();
+            }
+        });
+
 
     coinLabel = new JLabel();
     coinLabel.setHorizontalAlignment(JLabel.CENTER);
 
-    add(flipButton, BorderLayout.NORTH);
-    add(coinLabel, BorderLayout.CENTER);
+    setSize(592, 366);
+    setLayout(new BorderLayout());
+    setLocationRelativeTo(null);
+    setResizable(false);
+
+
+    //cf.add(flipButton, BorderLayout.NORTH);
+    //cf.add(coinLabel, BorderLayout.CENTER);
+    cf.add(flipButton, "cell 0 2, center, width 112!, height 32!");
+    cf.add(backb, "cell 0 2, center, width 112!, height 32!, gapright 40");
     setVisible(true);
   }
 
   public void actionPerformed(ActionEvent e) {
     int result = (int) (Math.random() * 2);
     if (result == 0) {
-      coinLabel.setText("Heads");
+       new ImageIcon(Heads);
     } else {
-      coinLabel.setText("Tails");
+      coinLabel.setIcon("Tails");
     }
   }
 }

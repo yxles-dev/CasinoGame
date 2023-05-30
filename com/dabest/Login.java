@@ -13,7 +13,7 @@ public class Login {
     AccountInformation accInf = new AccountInformation();
     JTextField username = new JTextField();
     JPasswordField password = new JPasswordField();
-    JFrame lgnFrame = new JFrame("Login");
+    JFrame lgnFrame = new JFrame("Digibet");
     GameSelector gameSelector = new GameSelector();
     SoundManager soundManager = new SoundManager();
     public static String userName;

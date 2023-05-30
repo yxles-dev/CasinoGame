@@ -5,6 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import com.dabest.AccountInformation;
 import com.dabest.GameSelector;
+import com.dabest.tools.WindowLocation;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -26,6 +27,7 @@ public class SlotMachine extends JFrame implements ActionListener {
     private int bet = 1;
 
     public void smGame() {
+        GameSelector gsl = new GameSelector();
         // Create the reels
         reels = new JLabel[3];
         for (int i = 0; i < 3; i++) {
@@ -39,6 +41,15 @@ public class SlotMachine extends JFrame implements ActionListener {
         spinButton = new JButton("Spin");
         spinButton.addActionListener(this);
 
+        // Back Button
+        JButton back = new JButton("Go Back");
+        back.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                gsl.Game1();
+            }
+        });
+
         // Add the components to the content pane
         Container c = getContentPane();
         c.setLayout(new MigLayout("fill"));
@@ -48,8 +59,11 @@ public class SlotMachine extends JFrame implements ActionListener {
         }
         c.add(reelsPanel, "cell 0 0, center");
         c.add(spinButton, "cell 0 1, center");
+        c.add(back, "dock north");
 
         // Set the size and show the frame
+        WindowLocation wl = new WindowLocation();
+        setLocation(wl.getLocation());
         setSize(700, 340);
         setVisible(true);
     }
@@ -79,7 +93,7 @@ public class SlotMachine extends JFrame implements ActionListener {
         JOptionPane.showMessageDialog(this, "Payout: " + payout + "\nCredits: " + credits);
 
         // Disable the spin button if the player is out of credits
-        if (credits < bet) {
+        if (credits < bet | credits == 0) {
             spinButton.setEnabled(false);
         }
     }

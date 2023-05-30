@@ -17,7 +17,7 @@ public class Register implements ActionListener {
     TermsCon termsCon = new TermsCon();
     Login login = new Login();
 
-    JFrame regFrame = new JFrame();
+    JFrame regFrame = new JFrame("Digibet");
 
     JTextField inputFN = new JTextField();
     JTextField inputLN = new JTextField();

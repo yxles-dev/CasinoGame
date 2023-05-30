@@ -4,6 +4,7 @@ import javax.swing.*;
 import com.dabest.games.SlotMachine;
 import com.dabest.tools.TextReader;
 import com.dabest.tools.WindowClosedCallback;
+import com.dabest.tools.WindowLocation;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -43,7 +44,6 @@ public class SMTutorial {
 
         backb.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                gs.enableGS();
                 game.dispose();
                 callback.onWindowClosed();
             }
@@ -58,10 +58,12 @@ public class SMTutorial {
         play.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Dispose GameSelector
-                GameSelector gsl = new GameSelector();
-                JFrame gameSelector = gsl.getFrame();
-                callback.onWindowClosed();
-                gameSelector.dispose();
+                WindowLocation wl = new WindowLocation();
+                wl.setLocation(game.getLocation());
+                // GameSelector gsl = new GameSelector();
+                // JFrame coinflip = gsl.getFrame();
+                // coinflip.dispose();
+                GameSelector.getFrame().dispose();
                 game.dispose();
                 smg.smGame();
             }

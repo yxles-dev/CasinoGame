@@ -23,7 +23,7 @@ public class TCTutorial {
 
     public void tc() throws FileNotFoundException {
 
-        JFrame game = new JFrame();
+        JFrame game = new JFrame("Digibet");
         game.setLayout(new MigLayout("fill"));
 
         game.addWindowListener(new WindowAdapter() {
@@ -43,7 +43,6 @@ public class TCTutorial {
 
         backb.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                gs.enableGS();
                 game.dispose();
                 callback.onWindowClosed();
             }

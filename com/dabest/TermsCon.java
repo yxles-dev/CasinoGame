@@ -38,11 +38,9 @@ public class TermsCon {
         
 
         // Frame initialization
-        JFrame frame1 = new JFrame("Casino Game");
+        JFrame frame1 = new JFrame("Digibet");
         JScrollPane scroll = new JScrollPane(TaC);
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        ImageIcon icon = new ImageIcon("src/icon.png");
-        frame1.setIconImage(icon.getImage());
         
 
         // Terms and Conditions Screen
