@@ -21,7 +21,7 @@ public class GameSelector {
     AccountInformation accInf = new AccountInformation();
     DebugMenu dbgMenu = new DebugMenu();
     Purchase buyCash = new Purchase();
-    JFrame coinflip = new JFrame();
+    JFrame gsFrame = new JFrame("Digibet");
 
     public void Game1() {
         //Loading Screen
@@ -52,20 +52,20 @@ public class GameSelector {
         Image img22 = img2.getImage();
         Image newimg2 = img22.getScaledInstance(156, 186, java.awt.Image.SCALE_SMOOTH);
 
-        ImageIcon img4 = new ImageIcon("src/icons/slotmachine.png");
-        Image img44 = img4.getImage();
-        Image newimg4 = img44.getScaledInstance(156, 186, java.awt.Image.SCALE_SMOOTH);
+        ImageIcon img3 = new ImageIcon("src/icons/slotmachine.png");
+        Image img33 = img3.getImage();
+        Image newimg3 = img33.getScaledInstance(156, 186, java.awt.Image.SCALE_SMOOTH);
 
         JButton game1 = new JButton(new ImageIcon(newimg1)); // Tao-Ibon
         JButton game2 = new JButton(new ImageIcon(newimg2)); // Rock Paper Scissor
-        JButton game3 = new JButton(new ImageIcon(newimg4)); // Slot Machine
+        JButton game3 = new JButton(new ImageIcon(newimg3)); // Slot Machine
 
         game1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent g2) {
-                coinflip.setEnabled(false);
+                gsFrame.setEnabled(false);
                 TCTutorial tct = new TCTutorial(new WindowClosedCallback() {
                     public void onWindowClosed() {
-                        coinflip.setEnabled(true);  // Enable the button when the JFrame is closed
+                        gsFrame.setEnabled(true);  // Enable the button when the JFrame is closed
                     }
                 });
                 try {
@@ -78,10 +78,10 @@ public class GameSelector {
 
         game2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent g3) {
-                coinflip.setEnabled(false);
+                gsFrame.setEnabled(false);
                 RPSTutorial rpst = new RPSTutorial(new WindowClosedCallback() {
                     public void onWindowClosed() {
-                        coinflip.setEnabled(true);  // Enable the button when the JFrame is closed
+                        gsFrame.setEnabled(true);  // Enable the button when the JFrame is closed
                     }
                 });
                 try {
@@ -94,10 +94,10 @@ public class GameSelector {
 
         game3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent g3) {
-                coinflip.setEnabled(false);
+                gsFrame.setEnabled(false);
                 SMTutorial smt = new SMTutorial(new WindowClosedCallback() {
                     public void onWindowClosed() {
-                        coinflip.setEnabled(true);  // Enable the button when the JFrame is closed
+                        gsFrame.setEnabled(true);  // Enable the button when the JFrame is closed
                     }
                 });
                 try {
@@ -134,29 +134,25 @@ public class GameSelector {
         });
         
         
-        coinflip.setSize(698, 458);
-        coinflip.setLayout(new MigLayout("fill"));
-        coinflip.setLocationRelativeTo(null);
-        coinflip.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        coinflip.add(money, "cell 0 0, gapbefore push");
-        coinflip.add(purchase, "cell 0 0");
-        coinflip.add(name, "cell 0 1, span 2, center, wrap");
-        // coinflip.add(game1, "cell 0 2, center, width 156!, height 186!, gapleft 20, gapright 20");
-        coinflip.add(game1, "cell 0 2, center, width 156!, height 186!, gapleft 20, gapright 20");
-        coinflip.add(game2, "cell 0 2, center, width 156!, height 186!, gapright 20");
-        coinflip.add(game3, "cell 0 2, center, width 156!, height 186!, gapright 20");
-        coinflip.add(debug, "cell 0 3, center");
+        gsFrame.setSize(698, 458);
+        gsFrame.setLayout(new MigLayout("fill"));
+        gsFrame.setLocationRelativeTo(null);
+        gsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        gsFrame.add(money, "cell 0 0, gapbefore push");
+        gsFrame.add(purchase, "cell 0 0");
+        gsFrame.add(name, "cell 0 1, span 2, center, wrap");
+        // gsFrame.add(game1, "cell 0 2, center, width 156!, height 186!, gapleft 20, gapright 20");
+        gsFrame.add(game1, "cell 0 2, center, width 156!, height 186!, gapleft 20, gapright 20");
+        gsFrame.add(game2, "cell 0 2, center, width 156!, height 186!, gapright 20");
+        gsFrame.add(game3, "cell 0 2, center, width 156!, height 186!, gapright 20");
+        gsFrame.add(debug, "cell 0 3, center");
         loading.dispose();
-        coinflip.pack();
-        // coinflip.setMinimumSize(new Dimension(698, 458));
-        coinflip.setVisible(true);
+        gsFrame.pack();
+        // gsFrame.setMinimumSize(new Dimension(698, 458));
+        gsFrame.setVisible(true);
     }
 
-    public JFrame getFrame() {
-        return coinflip;
-    }
-
-    public void enableGS() {
-        coinflip.setEnabled(true);
+    public final JFrame getFrame() {
+        return gsFrame;
     }
 }
