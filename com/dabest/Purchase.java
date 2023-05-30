@@ -12,7 +12,7 @@ import net.miginfocom.swing.MigLayout;
 public class Purchase {
     AccountInformation accInf = new AccountInformation();
     public void purchaseScreen() {
-        JFrame purScreen = new JFrame();
+        JFrame purScreen = new JFrame("Buy Menu");
         JLabel text = new JLabel("Purchase Cash");
         purScreen.setLayout(new MigLayout("fill"));
         purScreen.setLocationRelativeTo(null);

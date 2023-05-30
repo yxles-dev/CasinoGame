@@ -152,14 +152,14 @@ public class Register implements ActionListener {
                         if (ps.executeUpdate() > 0)
                         {
                             JOptionPane.showMessageDialog(null, "New User Add");
-                            login.loginScreen();
-                            regFrame.dispose();
+                            JOptionPane.showMessageDialog(null, "To bypass an issue with MariaDB, the program will now close to allow logging in into account");
+                            //login.loginScreen();
+                            //regFrame.dispose();
+                            System.exit(0);
                         }
                     } catch (SQLException e1) {
                         e1.printStackTrace();
-                    } catch (FileNotFoundException e1) {
-                        e1.printStackTrace();
-                    }
+                    } 
                 }
             } catch (HeadlessException e1) {
                 e1.printStackTrace();

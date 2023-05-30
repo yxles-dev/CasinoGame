@@ -47,6 +47,7 @@ public class SlotMachine extends JFrame implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 dispose();
                 gsl.Game1();
+                AccountInformation.Cash = credits;
             }
         });
 

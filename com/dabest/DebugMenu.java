@@ -1,23 +1,24 @@
 package com.dabest;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JFrame;
+
+/*import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
+import javax.swing.SwingUtilities; **/
 
 import net.miginfocom.swing.MigLayout;
 
 public class DebugMenu {
     AccountInformation accInf = new AccountInformation();
     public void debugMenu() {
-        JFrame menu = new JFrame();
+        JFrame menu = new JFrame("Profile");
         menu.setLayout(new MigLayout("fill"));
         menu.setLocationRelativeTo(null);
+        menu.setSize(520, 450);
 
-        JLabel dbgText = new JLabel("Debug Menu");
+        JLabel dbgText = new JLabel("Profile Menu");
         JLabel fName = new JLabel("First Name: ");
         JLabel fNameVal = new JLabel(accInf.getFName());
         JLabel lName = new JLabel("Last Name: ");
@@ -28,9 +29,9 @@ public class DebugMenu {
         toString();
         JLabel cashVal = new JLabel(String.valueOf(accInf.getCash()));
 
-        Runnable labelUpdater = () -> cashVal.setText(String.valueOf(accInf.getCash()));
+        //Runnable labelUpdater = () -> cashVal.setText(String.valueOf(accInf.getCash()));
 
-        JButton decreaseCash = new JButton("Decrease Cash");
+        /*JButton decreaseCash = new JButton("Decrease Cash");
         decreaseCash.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int decrease = Integer.parseInt(JOptionPane.showInputDialog(null, "By how much?"));
@@ -40,7 +41,7 @@ public class DebugMenu {
             }
         });
 
-        JButton increaseCash = new JButton("Increase Cash");
+        //JButton increaseCash = new JButton("Increase Cash");
         increaseCash.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent i) {
                 int increase = Integer.parseInt(JOptionPane.showInputDialog(null, "By how much?"));
@@ -56,7 +57,7 @@ public class DebugMenu {
                 accInf.updateCash();
                 JOptionPane.showMessageDialog(null, "Successful");
             }
-        });
+        }); **/
 
         menu.add(dbgText, "span 2, center, wrap");
         menu.add(fName, "cell 0 1");
@@ -67,9 +68,9 @@ public class DebugMenu {
         menu.add(uNameVal, "cell 1 3");
         menu.add(cash, "cell 0 4");
         menu.add(cashVal, "cell 1 4");
-        menu.add(decreaseCash, "cell 0 5, center");
+        /*menu.add(decreaseCash, "cell 0 5, center");
         menu.add(increaseCash, "cell 1 5, center");
-        menu.add(updateCash, "cell 0 6");
+        menu.add(updateCash, "cell 0 6"); **/
         menu.pack();
         menu.setVisible(true);
     }
