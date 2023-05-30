@@ -1,0 +1,63 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CasinoMain",
+            "request": "launch",
+            "mainClass": "com.dabest.CasinoMain",
+            "projectName": "CasinoGame_d830c985"
+        },
+        {
+            "type": "java",
+            "name": "CasinoMain",
+            "request": "launch",
+            "mainClass": "com.dabest.CasinoMain",
+            "projectName": "CasinoGame_89174e72"
+        },
+        {
+            "type": "java",
+            "name": "ExampleMain",
+            "request": "launch",
+            "mainClass": "testcodes.ExampleMain",
+            "projectName": "CasinoGame_89174e72"
+        },
+        {
+            "type": "java",
+            "name": "LayeredPaneExample",
+            "request": "launch",
+            "mainClass": "testcodes.LayeredPaneExample",
+            "projectName": "CasinoGame_89174e72"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "CasinoMain",
+            "request": "launch",
+            "mainClass": "CasinoMain",
+            "projectName": "CasinoGame_89174e72"
+        },
+        {
+            "type": "java",
+            "name": "SlotMachine",
+            "request": "launch",
+            "mainClass": "games.SlotMachine",
+            "projectName": "CasinoGame_89174e72"
+        },
+        {
+            "type": "java",
+            "name": "point",
+            "request": "launch",
+            "mainClass": "testcodes.point",
+            "projectName": "CasinoGame_89174e72"
+        }
+    ]
+}
