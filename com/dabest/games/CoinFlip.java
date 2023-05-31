@@ -1,63 +1,94 @@
 package com.dabest.games;
-import java.awt.*;
+
 import java.awt.event.*;
 import javax.swing.*;
 
-public class CoinFlip extends JFrame implements ActionListener {
-  private JButton flipButton;
+import com.dabest.AccountInformation;
+import com.dabest.GameSelector;
+
+import net.miginfocom.swing.MigLayout;
+
+public class CoinFlip {
+  GameSelector gsl = new GameSelector();
+  AccountInformation accInf = new AccountInformation();
+  private int playerChoice = 0;
   private JLabel coinLabel;
-
-  ImageIcon Heads = new ImageIcon("src/icons/");
-  Image one = Heads.getImage();
-
-  ImageIcon Tails = new ImageIcon("src/icons/");
-  Image two = Tails.getImage();
+  private int Cash = accInf.getCash();
 
   public void cfGame() {
+    JFrame cf = new JFrame();
+    cf.setTitle("Coin Flip");
+    cf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    cf.setSize(300, 300);
+    cf.setLayout(new MigLayout("fill"));
 
-    JFrame cf = new JFrame("Digibet");
-    JButton backb = new JButton("Go Back");
-
-      
-      backb.addActionListener(new ActionListener() {
-          public void actionPerformed(ActionEvent e) {
-              cf.dispose();
-              //callback.onWindowClosed();
-          }
-      });
-
-
-        JButton play = new JButton("Play");
-
-        play.addActionListener(new ActionListener() {
+    JButton back = new JButton("Go Back");
+        back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cf.dispose();
+                gsl.Game1();
             }
         });
 
+    JButton head = new JButton("Head");
+    head.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        playerChoice = 1;
+        play();
+      }
+    });
+
+    JButton tails = new JButton("Tails");
+    tails.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        playerChoice = 0;
+        play();
+      }
+    });
 
     coinLabel = new JLabel();
     coinLabel.setHorizontalAlignment(JLabel.CENTER);
 
-    setSize(592, 366);
-    setLayout(new BorderLayout());
-    setLocationRelativeTo(null);
-    setResizable(false);
-
-
-    //cf.add(flipButton, BorderLayout.NORTH);
-    cf.add(coinLabel, BorderLayout.CENTER);
-    cf.add(flipButton, "cell 0 2, center, width 112!, height 32!");
-    cf.add(backb, "cell 0 2, center, width 112!, height 32!, gapright 40");
-    setVisible(true);
+    cf.add(back, "dock north");
+    cf.add(head, "cell 0 0, center");
+    cf.add(tails, "cell 0 0, center");
+    cf.add(coinLabel, "cell 0 1, center");
+    cf.setSize(300, 300);
+    cf.setVisible(true);
   }
 
-  public void actionPerformed(ActionEvent e) {
-    int result = (int) (Math.random() * 2);
-    if (result == 0) {
-      coinLabel.setIcon("");
+  public void play() {
+    ImageIcon headIcon = new ImageIcon("src/icons/CoinFlip/Head.png");
+    ImageIcon tailsIcon = new ImageIcon("src/icons/CoinFlip/Tails.png");
+    ImageIcon resultImage;
+    String resultString;
+    int result = (int) (Math.random() * 1);
+    switch (result) {
+      case 0:
+        resultImage = headIcon;
+        resultString = "Head";
+        break;
+      case 1:
+        resultImage = tailsIcon;
+        resultString = "Tails";
+        break;
+      default:
+        resultImage = headIcon;
+        resultString = "Head";
+        break;
+    }
+    if (playerChoice == result) {
+      int newCash = Cash - 50;
+      Cash = newCash;
+      AccountInformation.Cash = Cash;
+      coinLabel.setIcon(resultImage);
+      JOptionPane.showMessageDialog(null, "The computer chose " + resultString + " and you lose 50 cash" + "\nCash: " + Cash);
     } else {
-      coinLabel.setIcon("Tails");
+      int newCash = Cash + 50;
+      Cash = newCash;
+      AccountInformation.Cash = Cash;
+      coinLabel.setIcon(resultImage);
+      JOptionPane.showMessageDialog(null, "The computer chose " + resultString + " and you won 50 cash" + "\nCash: " + Cash);
     }
   }
 }

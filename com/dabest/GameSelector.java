@@ -141,8 +141,7 @@ public class GameSelector {
         gsFrame.add(money, "cell 0 0, gapbefore push");
         gsFrame.add(purchase, "cell 0 0");
         gsFrame.add(name, "cell 0 1, span 2, center, wrap");
-        // gsFrame.add(game1, "cell 0 2, center, width 156!, height 186!, gapleft 20, gapright 20");
-        //gsFrame.add(game1, "cell 0 2, center, width 156!, height 186!, gapleft 20, gapright 20");
+        gsFrame.add(game1, "cell 0 2, center, width 156!, height 186!, gapleft 20, gapright 20");
         gsFrame.add(game2, "cell 0 2, center, width 156!, height 186!, gapleft 20, gapright 20");
         gsFrame.add(game3, "cell 0 2, center, width 156!, height 186!, gapright 20");
         gsFrame.add(debug, "cell 0 3, center");

@@ -9,6 +9,13 @@
             "name": "CasinoMain",
             "request": "launch",
             "mainClass": "com.dabest.CasinoMain",
+            "projectName": "CasinoGame_f9bf1a49"
+        },
+        {
+            "type": "java",
+            "name": "CasinoMain",
+            "request": "launch",
+            "mainClass": "com.dabest.CasinoMain",
             "projectName": "CasinoGame_1b2ee583"
         },
         {
