@@ -91,7 +91,7 @@ public class Login {
             }
         });
 
-        JButton debugButton = new JButton("Debug Login");
+        /* JButton debugButton = new JButton("Debug Login");
         debugButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent d) {
                 String[] options = { "Login using Debug Account", "Dont login and just go to GameSelector (not recommended)"};
@@ -105,7 +105,7 @@ public class Login {
                     gameSelector.Game1();
                 }
             }
-        });
+        }); **/
 
         lgnFrame.setSize(520, 366);
         lgnFrame.setMinimumSize(new Dimension(520, 366));
@@ -120,7 +120,7 @@ public class Login {
         lgnFrame.add(signin, "cell 0 2, center, gapleft 60, width 112!, height 32!");
         lgnFrame.add(or, "cell 1 2, center");
         lgnFrame.add(register, "cell 2 2, center, gapright 60");
-        lgnFrame.add(debugButton, "cell 1 3, center");
+        //lgnFrame.add(debugButton, "cell 1 3, center");
         lgnFrame.pack();
 
         lgnFrame.setVisible(true);

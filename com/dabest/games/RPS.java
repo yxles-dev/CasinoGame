@@ -1,53 +1,66 @@
 package com.dabest.games;
 
+import java.awt.Image;
 import java.awt.event.*;
 import javax.swing.*;
+
+import com.dabest.AccountInformation;
+import com.dabest.GameSelector;
 
 import net.miginfocom.swing.MigLayout;
 
 public class RPS extends JFrame implements ActionListener {
+    AccountInformation accInf = new AccountInformation();
+    GameSelector gsl = new GameSelector();
     private JButton rockButton, paperButton, scissorsButton;
     private JLabel resultLabel;
+    private int Cash = accInf.getCash();
     private int userScore, computerScore;
     private ImageIcon[] symbols = {
         new ImageIcon("src/icons/RPS/R.png"),
         new ImageIcon("src/icons/RPS/P.png"), 
         new ImageIcon("src/icons/RPS/S.png")
     };
-    private JLabel[] resultImage;
+    private JLabel resultImage = new JLabel(new ImageIcon("src/icons/RPS/R.png"));
 
     public void rpsGame() {
+
+        JFrame rps = new JFrame();
         setLayout(new MigLayout("fill"));
         setLocationRelativeTo(null);
+        setTitle("Digibet");
+        
 
-        resultImage = new JLabel[1];
-
-        // Create buttons
         rockButton = new JButton("Rock");
         paperButton = new JButton("Paper");
         scissorsButton = new JButton("Scissors");
 
-        // Add action listeners to buttons
+
         rockButton.addActionListener(this);
         paperButton.addActionListener(this);
         scissorsButton.addActionListener(this);
 
-        // Create result label
+
         resultLabel = new JLabel("Choose your move!");
 
-        // Add the resultImage to Content
-        // JPanel reelsPanel = new JPanel(new MigLayout("fill"));
-        // reelsPanel.add(resultImage)
+        JButton back = new JButton("Go Back");
+        back.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                gsl.Game1();
+            }
+        });
 
-        // Add components to content pane
+
+        add(back, "dock north");
         add(rockButton, "cell 0 0");
         add(paperButton, "cell 0 0");
         add(scissorsButton, "cell 0 0");
         add(resultLabel, "cell 0 1, center");
-        add(resultImage[0], "cell 0 2, center");
+        add(resultImage, "cell 0 2");
 
-        // Set window properties
-        setSize(592, 366);
+
+        rps.setSize(592, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setVisible(true);
@@ -59,23 +72,39 @@ public class RPS extends JFrame implements ActionListener {
         String result = getResult(userMove, computerMove);
         System.out.println(computerMove);
 
-        // Update result label
+
+        Image img1 = symbols[0].getImage();
+        Image img2 = symbols[1].getImage();
+        Image img3 = symbols[2].getImage();
         resultLabel.setText("You chose " + userMove + ". Computer chose " + computerMove + ". " + result);
-        // resultImage.setIcon();
+        if (computerMove.contains("Rock")) {
+            resultImage.setIcon(new ImageIcon(img1));
+        } if (computerMove.contains("Paper")) {
+            resultImage.setIcon(new ImageIcon(img2));
+        } if (computerMove.contains("Scissor")) {
+            resultImage.setIcon(new ImageIcon(img3));
+        }
 
 
-        // Update scores
+
         if (result.equals("You win!")) {
+            int newvalue = Cash + 50;
+            Cash = newvalue;
+            AccountInformation.Cash = Cash;
             userScore++;
+            finalScore();
         } else if (result.equals("Computer wins!")) {
+            int newvalue = Cash - 50;
+            Cash = newvalue;
+            AccountInformation.Cash = Cash;
             computerScore++;
+            finalScore();
         }
+    }
 
-        // Show final score after 3 rounds
-        if (userScore + computerScore == 3) {
-            String finalResult = "Final score: You " + userScore + ", Computer " + computerScore;
-            JOptionPane.showMessageDialog(this, finalResult);
-        }
+    public void finalScore() {
+        String finalResult = "Final score: You " + userScore + ", Computer " + computerScore + ", Your current money is " + Cash;
+        JOptionPane.showMessageDialog(this, finalResult);
     }
 
     private String getComputerMove() {
